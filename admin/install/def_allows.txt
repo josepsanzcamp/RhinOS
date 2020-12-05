@@ -1,0 +1,6 @@
+#
+TABLE def_allows
+#
+SPEC "value"
+ROW "allow"
+ROW "deny"

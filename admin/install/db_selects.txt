@@ -1,0 +1,22 @@
+#
+TABLE db_selects
+#
+SPEC "tbl","row","table_ref","value_ref","text_ref"
+ROW "db_dinamics","type","def_dinamics","value","value"
+ROW "db_forms","type","def_types","value","value"
+ROW "db_forms","tbl","db_tables","tbl","tbl"
+ROW "db_lists","size","def_sizes","value","value"
+ROW "db_lists","type","def_types","value","value"
+ROW "db_lists","tbl","db_tables","tbl","tbl"
+ROW "db_notes","user","db_users","login","login"
+ROW "db_perms","allow","def_allows","value","value"
+ROW "db_perms","user","db_users","login","login"
+ROW "db_perms","role","def_roles","value","value"
+ROW "db_selects","tbl","db_tables","tbl","tbl"
+ROW "db_selects","table_ref","db_tables","tbl","tbl"
+ROW "db_tables","icon","def_icons","icon","icon"
+ROW "tbl_config","deltag","tbl_config","param","param"
+ROW "tbl_files","deltag","tbl_files","tag","tag"
+ROW "tbl_labels","deltag","tbl_labels","tag","tag"
+ROW "tbl_labels","deltag:delsec","tbl_labels","sec","multiselect"
+ROW "tbl_response","id_queue","tbl_queue","id","subject"

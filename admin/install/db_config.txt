@@ -1,0 +1,10 @@
+#
+TABLE db_config
+#
+SPEC "param","value"
+ROW "pagename","BaseWEB"
+ROW "pagemail","info@saltos.org"
+ROW "admuser","admin"
+ROW "pagestyle","custom.blue"
+ROW "pagelimit","15"
+ROW "floatmenu","1"

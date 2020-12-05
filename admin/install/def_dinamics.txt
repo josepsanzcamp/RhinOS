@@ -1,0 +1,9 @@
+#
+TABLE def_dinamics
+#
+SPEC "value"
+ROW "text"
+ROW "textarea"
+ROW "textareaold"
+ROW "file"
+ROW "photo"

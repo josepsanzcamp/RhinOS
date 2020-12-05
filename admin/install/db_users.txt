@@ -1,0 +1,6 @@
+#
+TABLE db_users
+#
+SPEC "login","password"
+ROW "admin","21232f297a57a5a743894a0e4a801fc3"
+ROW "demo","fe01ce2a7fbac8fafaed7c982a04e229"

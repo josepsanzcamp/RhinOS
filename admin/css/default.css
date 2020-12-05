@@ -1,0 +1,433 @@
+/*
+ ____  _     _        ___  ____
+|  _ \| |__ (_)_ __  / _ \/ ___|
+| |_) | '_ \| | '_ \| | | \___ \
+|  _ <| | | | | | | | |_| |___) |
+|_| \_\_| |_|_|_| |_|\___/|____/
+
+RhinOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2016 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* OLD CONFIGURATION */
+.inicio {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.header {
+	height: 50px;
+}
+.main {
+}
+img {
+	vertical-align: middle;
+	border: 0px;
+}
+table {
+	border: 0px;
+	padding: 0px;
+}
+.edits {
+	width:100%;
+	height:400px;
+	font-size:11px;
+}
+.tables {
+	border-collapse: collapse;
+}
+.tdsh {
+	height: 22px;
+}
+.tdsp {
+	height: 22px;
+}
+.tdsi {
+	height: 22px;
+}
+.tdse {
+	height: 22px;
+}
+.tables2 {
+	border-collapse: collapse;
+}
+.migas {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.menushome {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.menushometxt {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+}
+.menushometxt2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.menusleft0 {
+}
+.menusleft1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+	background-position:top !important;
+}
+.menusleft2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+	background-position:top !important;
+}
+.menusleft3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+	margin:0px !important;
+}
+.menustop {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.buttons {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.buttons2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.inputs {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.inputs2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.links {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+}
+.links2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	font-weight: bold;
+}
+.texts {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+}
+.texts2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	font-weight: bold;
+}
+.texts3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+}
+.texts4 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	font-weight: bold;
+}
+.titulos {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 36px;
+	text-decoration: none;
+	font-weight: bold;
+}
+.errors {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	font-weight: bold;
+}
+.imagebacked {
+	padding: 0px 0 0px 20px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	vertical-align: middle;
+}
+/* GENERAL SETTINGS */
+body {
+	font-size:10px;
+	border:0px!important;
+}
+img {
+	border:0px;
+	vertical-align:middle;
+}
+form {
+	display:inline;
+}
+/* FOR STYLING JQUERY */
+button.ui-state-default {
+	padding:2px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+a.ui-state-default {
+	padding:3px 5px;
+	text-decoration:none;
+	margin-left:1px;
+	margin-right:1px;
+}
+span.ui-state-default {
+	padding:3px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+input.ui-state-default {
+	padding:3px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+input.ui-state-error {
+	padding:3px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+textarea.ui-state-default {
+	padding:3px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+textarea.ui-state-error {
+	padding:3px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+select.ui-state-default {
+	padding:2px 5px 3px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+select.ui-state-error {
+	padding:2px 5px 3px 5px;
+	margin-left:1px;
+	margin-right:1px;
+}
+/* FOR TABLES */
+.tabla tr td.thead {
+	white-space:nowrap;
+	padding:0px 2px;
+	height:22px;
+	vertical-align:middle;
+	border-left:none;
+	border-right:none;
+}}
+.tabla tr td.thead img.asc {
+	padding:0px 2px;
+	vertical-align:middle;
+	margin-bottom:1px;
+	margin-left:3px;
+}
+.tabla tr td.thead img.desc {
+	padding:0px 2px;
+	vertical-align:middle;
+	margin-bottom:1px;
+}
+.tabla tr td.tbody {
+	font-weight:normal;
+	padding:0px 2px;
+	height:22px;
+	vertical-align:middle;
+	border-left:none;
+	border-right:none;
+}
+.tabla tr td.tbody a {
+	text-decoration:underline;
+}
+.tabla tr td.nodata {
+	text-align:center;
+	font-weight:bold;
+	padding:10px;
+	border-left:none;
+	border-right:none;
+}
+.tabla tr td.notop {
+	border-top:0px;
+}
+.tabla tr td.noright {
+	border-right:0px;
+}
+.tabla tr td.noleft {
+	border-left:0px;
+}
+/* FOR ALIGNMENTS AND STYLES */
+.left{
+	text-align:left;
+}
+.center{
+	text-align:center;
+}
+.right{
+	text-align:right;
+}
+.top {
+	vertical-align:top;
+}
+.middle {
+	vertical-align:middle;
+}
+.bottom {
+	vertical-align:bottom;
+}
+.bold {
+	font-weight:bold;
+}
+.italic {
+	font-style:italic;
+}
+.normal {
+	font-weight:normal;
+	font-style:normal;
+}
+.label {
+	padding:0px 5px;
+}
+.tabla tr td.top {
+	vertical-align:top;
+}
+.tabla tr td.bottom {
+	vertical-align:bottom;
+}
+.tabla tr td.bold {
+	font-weight:bold;
+}
+/* FOR WIDTHS */
+.width1 {
+	width:1%;
+	white-space:nowrap;
+}
+.width33 {
+	width:33%;
+	white-space:nowrap;
+}
+.width50 {
+	width:50%;
+	white-space:nowrap;
+}
+.width90 {
+	width:90%;
+}
+.width100 {
+	width:100%;
+	white-space:nowrap;
+}
+/* EXTRAS */
+.nowrap {
+	white-space:nowrap;
+}
+.siwrap {
+	white-space:normal;
+}
+.actions {
+	vertical-align:top;
+}
+/* FOR GENERAL TABLES */
+table {
+	margin-left:auto;
+	margin-right:auto;
+	border-spacing:0px;
+}
+/* FOR IMAGE OBJECT */
+img.image {
+	padding:5px;
+}
+/* FOR TOOLTIP */
+.ui-tooltip td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+}
+.ui-tooltip em {
+	font-weight:bold;
+}
+.ui-tooltip img {
+	padding-right:5px;
+}
+/* FOR CONTEXT MENU */
+#contextMenu {
+	display:none;
+}
+#jqContextMenu ul li {
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+/* FOR BIG FIELDS */
+.bigfield {
+	background-position:top !important;
+}
+/* FIX FOR IE BUTTONS */
+button,input,select {
+    overflow:visible;
+}
+/* FOR MIGAS BUTTONS */
+.migas img {
+	vertical-align:middle;
+}
+/* FOR MENUSTOP BUTTONS */
+.menustop {
+	position:relative;
+	top:-1px;
+}
+/* FOR THE NEW RHINOS 3.5 */
+td.tbody input.ui-state-default,
+td.tbody select.ui-state-default,
+td.tbody textarea.ui-state-default {
+	border-width:0;
+	background:none;
+}
+.fix20181123 {
+	border-width:1px!important;
+	margin-top:1px;
+}
+.fix20181218 {
+	padding:0!important;
+}
+.fix20181218 .cke_chrome {
+	border:0!important;
+	margin:0!important;
+}
+.nofirst.ui-state-error {
+	border-top:0!important;
+}

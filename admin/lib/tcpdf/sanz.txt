@@ -1,0 +1,7 @@
+
+I removed for security reasons the:
+- lib/tcpdf/doc
+- lib/tcpdf/examples
+
+I created the images directory
+- lib/tcpdf/images

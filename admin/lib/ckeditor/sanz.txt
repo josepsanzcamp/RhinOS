@@ -1,0 +1,4 @@
+
+Some SaltOS changes:
+- REMOVED samples
+- Added some SANZ styles

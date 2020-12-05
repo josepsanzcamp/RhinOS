@@ -1,0 +1,10 @@
+#
+TABLE def_roles
+#
+SPEC "value"
+ROW "list"
+ROW "insert"
+ROW "select"
+ROW "update"
+ROW "delete"
+ROW "all"

@@ -1,0 +1,6 @@
+#
+TABLE db_perms
+#
+SPEC "user","tbl","role","allow"
+ROW "admin","%","all","allow"
+ROW "demo","tbl_%","all","allow"

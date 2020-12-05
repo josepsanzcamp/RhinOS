@@ -1,0 +1,12 @@
+#
+TABLE db_dinamics
+#
+SPEC "dinamic","type","text"
+ROW "titulo","text","Títol"
+ROW "subtitulo","text","Subtítol"
+ROW "descripcion","textarea","Descripció"
+ROW "html","textareaold","HTML"
+ROW "foto","photo","Foto"
+ROW "fichero","file","Fitxer"
+ROW "url","text","Url"
+ROW "video","text","Vídeo"
