@@ -1,9 +1,7 @@
-The RhinOS project
-==================
+# The RhinOS project
 The latest source code of the RhinOS project
 
-What is RhinOS?
-===============
+# What is RhinOS?
 RhinOS is a framework to develop web sites using the latest features to provide a fastest access and administration to the web portal.
 
 The main features are: 
@@ -14,8 +12,7 @@ The main features are:
 ![The RhinOS project](https://a.fsdn.com/con/app/proj/rhinos/screenshots/screenshot2.png)
 ![The RhinOS project](https://a.fsdn.com/con/app/proj/rhinos/screenshots/screenshot3.png)
 
-Features
-========
+# Features
 - Parametrized CMS
 - Pseudo-code to write quickly and easily templates using a simple and efficient parser.
 - Optimization using css and js minification, sectioned cache, database cache, templates cache, image processing with cache and more things.
