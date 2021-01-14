@@ -344,7 +344,12 @@ function get_base($param="") {
 	if(isset($base[$index])) return $base[$index];
 	$host=$_SERVER["SERVER_NAME"];
 	// FOR FORWARDED SITES
-	if(isset($_SERVER["HTTP_X_FORWARDED_HOST"])) $host=$_SERVER["HTTP_X_FORWARDED_HOST"];
+	if(isset($_SERVER["HTTP_X_FORWARDED_HOST"])) {
+		$host=$_SERVER["HTTP_X_FORWARDED_HOST"];
+		// TRICK PROVIDED BY SANTI OLIVERAS AT IEEC
+		$pos=strrpos($host,",");
+		if($pos!==false) $host=substr($host,$pos+1);
+	}
 	// CONTINUE
 	if(!in_array($_SERVER["SERVER_PORT"],array(80,443))) $host.=":".$_SERVER["SERVER_PORT"];
 	if(isset($pathbase)) {
