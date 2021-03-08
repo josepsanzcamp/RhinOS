@@ -223,7 +223,7 @@ if(in_array($argv[0],$direct)) {
 		if(isset($over) && cache_exists($cache,$over)) unlink($cache);
 		if(isset($font) && cache_exists($cache,$font)) unlink($cache);
 		// TRICK FOR GIF
-		if(!cache_exists($cache,$phpThumb->src) && pathinfo($phpThumb->src,PATHINFO_EXTENSION)=="gif" && pathinfo($argv[$argc-1],PATHINFO_EXTENSION)=="gif") {
+		if(!cache_exists($cache,$phpThumb->src) && pathinfo($phpThumb->src,PATHINFO_EXTENSION)=="gif" && pathinfo($argv[$argc-1],PATHINFO_EXTENSION)=="gif" && !is_disabled_function("passthru")) {
 			if(!$phpThumb->h || !$phpThumb->w) {
 				copy($phpThumb->src,$cache);
 			} elseif($phpThumb->far) {
@@ -299,7 +299,7 @@ if(in_array($argv[0],$direct)) {
 			@chmod($cache,0666);
 		}
 		// TRICK FOR WEBM
-		if(pathinfo($argv[$argc-1],PATHINFO_EXTENSION)=="webp") {
+		if(pathinfo($argv[$argc-1],PATHINFO_EXTENSION)=="webp" && !is_disabled_function("passthru")) {
 			$cache2=pathinfo($cache,PATHINFO_DIRNAME)."/".pathinfo($cache,PATHINFO_FILENAME).".webp";
 			if(!cache_exists($cache2,$cache)) {
 				capture_next_error();

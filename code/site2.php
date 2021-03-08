@@ -1231,4 +1231,20 @@ function parser($param) {
 function ifoutput($param) {
 	if(get_output()) content(__TAG1__." ".__TAG3__." $param ".__TAG2__,false);
 }
+
+function is_disabled_function($fn="") {
+	static $disableds_string=null;
+	static $disableds_array=array();
+	if($disableds_string===null) {
+		$disableds_string=ini_get("disable_functions").",".ini_get("suhosin.executor.func.blacklist");
+		$disableds_array=$disableds_string?explode(",",$disableds_string):array();
+		foreach($disableds_array as $key=>$val) {
+			$val=strtolower(trim($val));
+			if($val=="") unset($disableds_array[$key]);
+			if($val!="") $disableds_array[$key]=$val;
+		}
+	}
+	return in_array($fn,$disableds_array);
+}
+
 ?>

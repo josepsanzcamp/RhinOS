@@ -2271,6 +2271,9 @@ exit;
 				break;
 
 			case 'gif':
+				/* DISABLED BY SANZ BY SECURITY REASONS */
+				return false;
+				break;
 				// image has alpha transparency, but output as GIF which can handle only single-color transparency
 				$CurrentImageColorTransparent = ImageColorTransparent($this->gdimg_output);
 				if ($CurrentImageColorTransparent == -1) {
