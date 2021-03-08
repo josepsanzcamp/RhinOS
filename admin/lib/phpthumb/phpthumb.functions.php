@@ -229,7 +229,7 @@ class phpthumb_functions {
 	}
 
 	static function ImageHexColorAllocate(&$gdimg_hexcolorallocate, $HexColorString, $dieOnInvalid=false, $alpha=false) {
-		if (!is_resource($gdimg_hexcolorallocate)) {
+		if (!(is_resource($gdimg_hexcolorallocate) || (is_object($gdimg_hexcolorallocate) && $gdimg_hexcolorallocate instanceOf \GdImage))) {
 			die('$gdimg_hexcolorallocate is not a GD resource in ImageHexColorAllocate()');
 		}
 		if (phpthumb_functions::IsHexColor($HexColorString)) {
@@ -251,7 +251,7 @@ class phpthumb_functions {
 
 
 	static function GetPixelColor(&$img, $x, $y) {
-		if (!is_resource($img)) {
+		if (!(is_resource($img) || (is_object($img) && $img instanceOf \GdImage))) {
 			return false;
 		}
 		return @ImageColorsForIndex($img, @ImageColorAt($img, $x, $y));
