@@ -3098,6 +3098,9 @@ exit;
 
 		$this->SetOrientationDependantWidthHeight();
 
+		/* DISABLED BY SANZ BY SECURITY REASONS */
+		return true;
+
 		if (phpthumb_functions::version_compare_replacement(phpversion(), '4.2.0', '>=') && function_exists('exif_read_data')) {
 			switch ($this->getimagesizeinfo[2]) {
 				case IMAGETYPE_JPEG:
