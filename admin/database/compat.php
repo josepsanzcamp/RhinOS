@@ -29,7 +29,7 @@ function evalBool($arg) {
 
 function dbFieldType($result,$index) {
 	if($result["total"]==0) return "";
-	$data=$result["rows"][0][$result["header"][$index]];
+	$data=(string)$result["rows"][0][$result["header"][$index]];
 	if(strlen($data)==10 && $data[4]=="-" && $data[7]=="-") return "date";
 	if(strlen($data)==8 && $data[2]==":" && $data[5]==":") return "time";
 	return "";

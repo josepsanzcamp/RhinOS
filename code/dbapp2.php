@@ -443,7 +443,7 @@ function _dbapp2_parser(&$params,$buffer,$row=array(),$row2=array()) {
 		} elseif($cmd=="PRINT") {
 			$param=explode(" ",trim(strtok("")));
 			if(isset($params["__ALIAS__"])) foreach($params["__ALIAS__"] as $alias) $param[0]=str_replace($alias[0],$alias[1],$param[0]);
-			$temp=_dbapp2_replace($param[0],array_merge($row,$params),$row2,"ROW");
+			$temp=(string)_dbapp2_replace($param[0],array_merge($row,$params),$row2,"ROW");
 			$temp=str_replace("\\'","'",$temp);
 			$no_convert_date=0;
 			$no_convert_time=0;
