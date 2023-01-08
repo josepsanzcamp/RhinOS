@@ -33,9 +33,9 @@ $phpThumb = new phpThumb();
 $phpThumb->src=realpath(getcwd()."/files/".getParam("src"));
 $phpThumb->config_temp_directory=get_temp_directory();
 $phpThumb->config_cache_directory=get_temp_directory();
-$phpThumb->cache_maxage=86400*30;
-$phpThumb->cache_maxsize=10*1024*1024;
-$phpThumb->cache_maxfiles=200;
+$phpThumb->config_cache_maxage=86400*30;
+$phpThumb->config_cache_maxsize=10*1024*1024;
+$phpThumb->config_cache_maxfiles=200;
 $phpThumb->config_cache_force_passthru=false;
 if(getParam("w")) {
 	$phpThumb->w=intval(getParam("w"));

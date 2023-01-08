@@ -109,9 +109,9 @@ if(in_array($argv[0],$direct)) {
 		$phpThumb->src=realpath(getcwd()."/".$plantillas.$carga);
 		$phpThumb->config_temp_directory=$tmpdir;
 		$phpThumb->config_cache_directory=$tmpdir;
-		$phpThumb->cache_maxage=86400*30;
-		$phpThumb->cache_maxsize=10*1024*1024;
-		$phpThumb->cache_maxfiles=200;
+		$phpThumb->config_cache_maxage=86400*30;
+		$phpThumb->config_cache_maxsize=10*1024*1024;
+		$phpThumb->config_cache_maxfiles=200;
 		$phpThumb->config_cache_force_passthru=false;
 		if($argv[2]!="original") {
 			$size=explode("x",$argv[2]);
@@ -249,7 +249,7 @@ if(in_array($argv[0],$direct)) {
 				$background="ffffff";
 				if($phpThumb->bg!="") $background=$phpThumb->bg;
 				capture_next_error();
-				passthru("convert ".$phpThumb->src." -resize ${resize} -background '#${background}' -extent ${extent} ".$cache);
+				passthru("convert ".$phpThumb->src." -resize $resize -background '#$background' -extent $extent ".$cache);
 				get_clear_error();
 			} elseif($phpThumb->iar) {
 				$im=imagecreatefromgif($phpThumb->src);
@@ -259,7 +259,7 @@ if(in_array($argv[0],$direct)) {
 				$density=$w."x".$h;
 				$resample=$phpThumb->w."x".$phpThumb->h;
 				capture_next_error();
-				passthru("convert ".$phpThumb->src." -density ${density} -resample ${resample} ".$cache);
+				passthru("convert ".$phpThumb->src." -density $density -resample $resample ".$cache);
 				get_clear_error();
 			} elseif($phpThumb->zc) {
 				$im=imagecreatefromgif($phpThumb->src);
@@ -280,12 +280,12 @@ if(in_array($argv[0],$direct)) {
 					$crop=$phpThumb->w."x".$phpThumb->h."+".round($x)."+".round($y);
 				}
 				capture_next_error();
-				passthru("convert ".$phpThumb->src." -resize ${resize} -crop ${crop} +repage ".$cache);
+				passthru("convert ".$phpThumb->src." -resize $resize -crop $crop +repage ".$cache);
 				get_clear_error();
 			} else {
 				$resize=$phpThumb->w."x".$phpThumb->h;
 				capture_next_error();
-				passthru("convert ".$phpThumb->src." -resize ${resize} ".$cache);
+				passthru("convert ".$phpThumb->src." -resize $resize ".$cache);
 				get_clear_error();
 			}
 			if(file_exists($cache)) @chmod($cache,0666);
