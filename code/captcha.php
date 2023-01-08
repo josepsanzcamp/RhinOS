@@ -68,7 +68,9 @@ function captcha($param) {
 	srand((float)microtime(true)*10000000);
 	// DEFINE THE CODE AND REAL CAPTCHA
 	if($type=="number") {
-		$code=str_pad(rand(0,pow(10,$length)-1),$length,"0",STR_PAD_LEFT);
+		do {
+			$code=str_pad(rand(0,pow(10,$length)-1),$length,"0",STR_PAD_LEFT);
+		} while(!_captcha_isprime($code));
 		sessions("SET ${id}_value $code");
 		sessions("SET ${id}_ipaddr ".(isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"NULL"));
 		sessions("CLOSE");
