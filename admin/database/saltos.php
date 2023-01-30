@@ -428,6 +428,13 @@ function svnversion($dir) {
 	$rev=0;
 	$dir=realpath($dir);
 	for(;;) {
+		// FOR STATIC SUBVERSION
+		$file="$dir/svnversion";
+		if(file_exists($file)) {
+			$data=file_get_contents($file);
+			$rev=intval($data);
+			break;
+		}
 		// FOR SUBVERSION >= 12
 		$file="$dir/.svn/wc.db";
 		if(file_exists($file)) {
@@ -462,7 +469,8 @@ function isphp54() {
 }
 
 function get_name_version_revision($copyright=false) {
-	$path="baseweb/code"; // FOR RHINOS REQUESTS
+	$path=getcwd();
+	if(file_exists("baseweb/code")) $path="baseweb/code"; // FOR RHINOS REQUESTS
 	if(file_exists("../baseweb/admin")) $path="../baseweb/admin"; // FOR ADMIN REQUESTS
 	return "RhinOS"." v"."3.5"." r".intval(svnversion($path)).($copyright?" "."© 2007-2016 by Josep Sanz Campderrós, http://www.saltos.org":"");
 }

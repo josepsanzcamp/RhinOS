@@ -180,7 +180,7 @@ function openbody($title="",$body="") {
 	echo "<script type='text/javascript' language='javascript' src='lib/jquery/jquery-ui.min.js'></script>\n";
 	$file="lib/jquery/jquery-ui.$style/jquery-ui.min.css";
 	if(file_exists("jquery-ui.$style/jquery-ui.min.css")) $file="jquery-ui.$style/jquery-ui.min.css";
-	echo "<link href='${file}' rel='stylesheet' type='text/css'>\n";
+	echo "<link href='{$file}' rel='stylesheet' type='text/css'>\n";
 	echo "<script type='text/javascript' language='javascript' src='lib/phpjs/php.default.min.js'></script>\n";
 	echo "<script language='javascript' type='text/javascript' src='js/dinamics.js'></script>\n";
 	echo "<script type='text/javascript' language='javascript' src='js/default.js'></script>\n";
@@ -265,7 +265,7 @@ function puttextarea($variable="",$texto="",$form="",$ckeditor=true) {
 		$class=$ckeditor?"":"edits ui-state-default ui-corner-all";
 		$style=$ckeditor?"":"width:600px;height:150px";
 		$ckeditor=$ckeditor?"true":"false";
-		putcolumn("<textarea name='${variable}' style='$style' ckeditor='$ckeditor' class='$class'>${texto}</textarea>","left",$width_obj,"","bigfield fix20181218");
+		putcolumn("<textarea name='{$variable}' style='$style' ckeditor='$ckeditor' class='$class'>{$texto}</textarea>","left",$width_obj,"","bigfield fix20181218");
 	} else {
 		if(!$ckeditor) {
 			$texto=htmlentities($texto,ENT_COMPAT,"UTF-8");
@@ -374,8 +374,8 @@ function putselect($table,$variable,$form,$default="",$filter="1",$extra="") {
 	$query="SELECT * FROM db_forms WHERE tbl='$table_ref' AND row='".addslashes($text_ref)."'";
 	$result=dbQuery($query);
 	$row=dbFetchRow($result);
-	$is_photo=($row["type"]=="photo");
-	$is_file=($row["type"]=="file");
+	$is_photo=(isset($row["type"]) && $row["type"]=="photo");
+	$is_file=(isset($row["type"]) && $row["type"]=="file");
 	dbFree($result);
 	$temp=explode(":",$text_ref);
 	if($temp[0]=="concat") {
@@ -384,7 +384,7 @@ function putselect($table,$variable,$form,$default="",$filter="1",$extra="") {
 		$text_ref=parseQuery($text_ref,getdbtype());
 	}
 	if($form!="show") {
-		$variable2="${variable}${postvar}";
+		$variable2="{$variable}{$postvar}";
 		$variable5=str_replace(".","_",$variable2);
 		$_withtd=isset($_withtd)?$_withtd:1;
 		$maximo=100;
@@ -639,7 +639,7 @@ function putmultiselect($table,$variable,$form,$default="",$filter="1",$extra=""
 		$text_ref=parseQuery($text_ref,getdbtype());
 	}
 	if($form!="show") {
-		$variable2="${variable}${postvar}";
+		$variable2="{$variable}{$postvar}";
 		$variable5=str_replace(".","_",$variable2);
 		$_withtd=isset($_withtd)?$_withtd:1;
 		$maximo=100;
@@ -753,7 +753,7 @@ function putmultiselect($table,$variable,$form,$default="",$filter="1",$extra=""
 		$campos="$value_ref valor,$text_ref texto";
 		if($default=="") $default="-1";
 		$filter2=is_array($filter)?$filter["filter"]:$filter;
-		$extra2=is_array($filter)?"AND ((1 ${filter["extra"]}) OR $value_ref IN ($default))":"";
+		$extra2=is_array($filter)?"AND ((1 {$filter["extra"]}) OR $value_ref IN ($default))":"";
 		$query="SELECT $campos FROM $table_ref WHERE $filter2 $extra2 AND $value_ref!='' AND $text_ref!='' ORDER BY `texto`";
 		$result=dbQuery($query);
 		$temp1="<select multiple='multiple' size='5' style='width:284px;height:80px;overflow:auto' class='inputs ui-state-default ui-corner-all' name='all_$variable$postvar' id='all_$variable$postvar'>\n";
@@ -1046,7 +1046,7 @@ function putboolean($campo,$valor,$form) {
 		$style_width="600px";
 		if($width_obj=="33%") $style_width="250px";
 		$campo2=str_replace(".","_",$campo);
-		putcolumn("<table class='texts' border='0' cellspacing='0' cellpadding='0' style='width:$style_width' align='left'><tr><td style='vertical-align:bottom'><input type='radio' id='${campo2}_1' name='$campo' value='$value_si' $checked_si style='margin-bottom:3px' /></td><td><div><a href='javascript:void(0)' onclick='document.getElementById(\"${campo2}_1\").click()' onkeypress='if(event.keyCode==13) document.getElementById(\"${campo2}_1\").click()' style='text-decoration:none' >&nbsp;"._LANG("functions_putboolean_yes")."</a></div></td><td style='vertical-align:bottom'>&nbsp;</td><td style='vertical-align:bottom'><input type='radio' id='${campo2}_0' name='$campo' value='$value_no' $checked_no style='margin-bottom:3px' /></td><td><div><a href='javascript:void(0)' onclick='document.getElementById(\"${campo2}_0\").click()' onkeypress='if(event.keyCode==13) document.getElementById(\"${campo2}_0\").click()' style='text-decoration:none'>&nbsp;"._LANG("functions_putboolean_not")."</a></div></td><td width='99%' style='vertical-align:bottom'>&nbsp;</td></tr></table>","left",$width_obj);
+		putcolumn("<table class='texts' border='0' cellspacing='0' cellpadding='0' style='width:$style_width' align='left'><tr><td style='vertical-align:bottom'><input type='radio' id='{$campo2}_1' name='$campo' value='$value_si' $checked_si style='margin-bottom:3px' /></td><td><div><a href='javascript:void(0)' onclick='document.getElementById(\"{$campo2}_1\").click()' onkeypress='if(event.keyCode==13) document.getElementById(\"{$campo2}_1\").click()' style='text-decoration:none' >&nbsp;"._LANG("functions_putboolean_yes")."</a></div></td><td style='vertical-align:bottom'>&nbsp;</td><td style='vertical-align:bottom'><input type='radio' id='{$campo2}_0' name='$campo' value='$value_no' $checked_no style='margin-bottom:3px' /></td><td><div><a href='javascript:void(0)' onclick='document.getElementById(\"{$campo2}_0\").click()' onkeypress='if(event.keyCode==13) document.getElementById(\"{$campo2}_0\").click()' style='text-decoration:none'>&nbsp;"._LANG("functions_putboolean_not")."</a></div></td><td width='99%' style='vertical-align:bottom'>&nbsp;</td></tr></table>","left",$width_obj);
 	} else {
 		putcolumn(getboolean($valor),"left",$width_obj);
 	}
@@ -1109,7 +1109,7 @@ function getinput($table,$campo,$valor,$size,$num,$bad=0,$js="") {
 	$class="inputs ui-state-default ui-corner-all";
 	if($bad) $class="inputs2 ui-state-error ui-corner-all";
 	$size=intval($size)*6;
-	$style=($size>0)?"width:${size}px;":"";
+	$style=($size>0)?"width:{$size}px;":"";
 	$theid=$campo;
 	$num=strval($num);
 	if($table!="" && $num!="") $theid.=".$table.$num";
@@ -1128,7 +1128,7 @@ function resolveselect($table,$campo) {
 		$text_ref=isset($row["text_ref"])?$row["text_ref"]:"";
 		$table_ref=isset($row["table_ref"])?$row["table_ref"]:"";
 		dbFree($result);
-		$stack[$hash]="${table_ref}_${text_ref}";
+		$stack[$hash]="{$table_ref}_{$text_ref}";
 	}
 	return $stack[$hash];
 }
@@ -1248,14 +1248,14 @@ function puterrores($width="900") {
 				$texto="&nbsp;";
 			}
 			$e=implode(":",$e);
-			putcolumn("${texto}${e}","left","100%","","errors");
+			putcolumn("{$texto}{$e}","left","100%","","errors");
 			closerow();
 			settds("tdsh thead ui-state-error nofirst");
 		}
 		settds("tdsh thead ui-state-highlight");
 		foreach($info as $i) {
 			openrow();
-			putcolumn("&nbsp;${i}","left","100%","","errors");
+			putcolumn("&nbsp;{$i}","left","100%","","errors");
 			closerow();
 			settds("tdsh thead ui-state-highlight nofirst");
 		}
@@ -1290,7 +1290,7 @@ function getnamegroup($num) {
 			if(!file_exists("lib/crystal/16x16/".$row["icon"])) $row["icon"]="kblackbox.png";
 			if(!file_exists("lib/crystal/32x32/".$row["icon"])) $row["icon"]="kblackbox.png";
 			if(!file_exists("lib/crystal/48x48/".$row["icon"])) $row["icon"]="kblackbox.png";
-			$stack[$hash]="<table width='100%' height='100%'><tr><td rowspan=2 width=1><img src=\"lib/crystal/48x48/${row["icon"]}\" /></td><td height=1 valign=top class=\"titulos ui-state-default\" style=\"background:none;border:none;font-weight:bold;font-size:24px;padding-left:10px\">${row["name"]}</td></tr><tr><td valign=top class=\"titulos ui-state-default\" style=\"background:none;border:none;font-weight:normal;font-size:12px;padding-left:10px\">${row["description"]}</td></tr></table>";
+			$stack[$hash]="<table width='100%' height='100%'><tr><td rowspan=2 width=1><img src=\"lib/crystal/48x48/{$row["icon"]}\" /></td><td height=1 valign=top class=\"titulos ui-state-default\" style=\"background:none;border:none;font-weight:bold;font-size:24px;padding-left:10px\">{$row["name"]}</td></tr><tr><td valign=top class=\"titulos ui-state-default\" style=\"background:none;border:none;font-weight:normal;font-size:12px;padding-left:10px\">{$row["description"]}</td></tr></table>";
 		}
 		dbFree($result);
 	}
@@ -1797,11 +1797,11 @@ function show_data_dinamic($campo,$table,$j,$valor,&$row) {
 }
 
 function getmuestra($table,$campo,$valor,$myid,$edit) {
-	$temp="<input type='text' readonly='readonly' id='muestra_${campo}.${table}.${myid}' class='inputs ui-state-default ui-corner-all' style='width:22px;border:0px;background:#$valor' />\n";
+	$temp="<input type='text' readonly='readonly' id='muestra_{$campo}.{$table}.{$myid}' class='inputs ui-state-default ui-corner-all' style='width:22px;border:0px;background:#$valor' />\n";
 	if($edit) {
 		$temp.="<script type='text/javascript'>\n";
 		$temp.="$(document).ready(function() {\n";
-		$temp.="    $(\"input[name='${campo}.${table}.${myid}']\").bind('keyup',function() {\n";
+		$temp.="    $(\"input[name='{$campo}.{$table}.{$myid}']\").bind('keyup',function() {\n";
 		$temp.="        hexadecimal(this,6);\n";
 		$temp.="        $(\"input[id='muestra_\"+$(this).attr('name')+\"']\").css('background',($(this).val()?'#'+$(this).val():''));\n";
 		$temp.="    });\n";
@@ -1813,11 +1813,11 @@ function getmuestra($table,$campo,$valor,$myid,$edit) {
 
 function putcolor($campo,$table,$valor,$j,$myform) {
 	list($title,$text)=make_title_text("colors",_LANG("functions_putcolor_button_open"),_LANG("functions_putcolor_button_open_title"),"");
-	$temp="&nbsp;<a href='javascript:void(0)'><img src='lib/crystal/16x16/colors.png' title='$title' width='16px' height='16px' id='color_${campo}.${table}.${j}' /></a>";
+	$temp="&nbsp;<a href='javascript:void(0)'><img src='lib/crystal/16x16/colors.png' title='$title' width='16px' height='16px' id='color_{$campo}.{$table}.{$j}' /></a>";
 	$temp.="&nbsp;".getmuestra($table,$campo,$valor,$j,1);
 	$temp.="<script type='text/javascript'>\n";
 	$temp.="$(document).ready(function() {\n";
-	$temp.="    $(\"img[id='color_${campo}.${table}.${j}']\").ColorPicker({\n";
+	$temp.="    $(\"img[id='color_{$campo}.{$table}.{$j}']\").ColorPicker({\n";
 	$temp.="    	onBeforeShow:function() {\n";
 	$temp.="    		var caja=$(\"input[name='\"+$(this).attr('id').substr(6)+\"']\");\n";
 	$temp.="    		$(this).ColorPickerSetColor($(caja).val());\n";
@@ -1846,16 +1846,16 @@ function putcolor($campo,$table,$valor,$j,$myform) {
 
 function putdate($campo,$table,$valor,$j,$myform) {
 	list($title,$text)=make_title_text("date",_LANG("functions_putdate_button_open"),_LANG("functions_putdate_button_open_title"),"");
-	$temp="&nbsp;<a href='javascript:void(0)' onclick='show_${campo}_${table}_${j}()'><img src='lib/crystal/16x16/date.png' title='$title' width='16px' height='16px' id='${campo}.${table}.${j}_img' /></a>\n";
+	$temp="&nbsp;<a href='javascript:void(0)' onclick='show_{$campo}_{$table}_{$j}()'><img src='lib/crystal/16x16/date.png' title='$title' width='16px' height='16px' id='{$campo}.{$table}.{$j}_img' /></a>\n";
 	$temp.="<script type='text/javascript'>\n";
-	$temp.="function show_${campo}_${table}_${j}() {\n";
-	$temp.="	$(\"input[name='${campo}.${table}.${j}']\").datepicker(\"show\")\n";
+	$temp.="function show_{$campo}_{$table}_{$j}() {\n";
+	$temp.="	$(\"input[name='{$campo}.{$table}.{$j}']\").datepicker(\"show\")\n";
 	$temp.="}\n";
 	$temp.="$(document).ready(function() {\n";
-	$temp.="    $(\"input[name='${campo}.${table}.${j}']\").bind('keyup',function() {\n";
+	$temp.="    $(\"input[name='{$campo}.{$table}.{$j}']\").bind('keyup',function() {\n";
 	$temp.="        mascara(this,'/',new Array(2,2,4),true);\n";
 	$temp.="    });\n";
-	$temp.="    $(\"input[name='${campo}.${table}.${j}']\").datepicker({\n";
+	$temp.="    $(\"input[name='{$campo}.{$table}.{$j}']\").datepicker({\n";
 	$temp.="        dateFormat:'dd/mm/yy',\n";
 	$temp.="        firstDay:1,\n";
 	$temp.="        numberOfMonths:3,\n";
@@ -1879,20 +1879,20 @@ function puttime($campo,$table,$valor,$j,$myform) {
 function putdatetime($campo,$table,$valor,$j,$myform) {
 	global $width_obj;
 	if($myform!="show") {
-		$onchange="$('input[name=\'${campo}.${table}.${j}\']').val($('input[name=\'${campo}_date.${table}.${j}\']').val()+' '+$('input[name=\'${campo}_time.${table}.${j}\']').val());";
+		$onchange="$('input[name=\'{$campo}.{$table}.{$j}\']').val($('input[name=\'{$campo}_date.{$table}.{$j}\']').val()+' '+$('input[name=\'{$campo}_time.{$table}.{$j}\']').val());";
 		$temp="";
-		$temp.=getinput($table,$campo."_date",substr($valor,0,10),16,$j,0,"onchange=\"${onchange}\"");
+		$temp.=getinput($table,$campo."_date",substr($valor,0,10),16,$j,0,"onchange=\"{$onchange}\"");
 		list($title,$text)=make_title_text("date",_LANG("functions_putdate_button_open"),_LANG("functions_putdate_button_open_title"),"");
-		$temp.="&nbsp;<a href='javascript:void(0)' onclick='show_${campo}_date_${table}_${j}()'><img src='lib/crystal/16x16/date.png' title='$title' width='16px' height='16px' id='${campo}_date.${table}.${j}_img' /></a>\n";
+		$temp.="&nbsp;<a href='javascript:void(0)' onclick='show_{$campo}_date_{$table}_{$j}()'><img src='lib/crystal/16x16/date.png' title='$title' width='16px' height='16px' id='{$campo}_date.{$table}.{$j}_img' /></a>\n";
 		$temp.="<script type='text/javascript'>\n";
-		$temp.="function show_${campo}_date_${table}_${j}() {\n";
-		$temp.="	$(\"input[name='${campo}_date.${table}.${j}']\").datepicker(\"show\")\n";
+		$temp.="function show_{$campo}_date_{$table}_{$j}() {\n";
+		$temp.="	$(\"input[name='{$campo}_date.{$table}.{$j}']\").datepicker(\"show\")\n";
 		$temp.="}\n";
 		$temp.="$(document).ready(function() {\n";
-		$temp.="    $(\"input[name='${campo}_date.${table}.${j}']\").bind('keyup',function() {\n";
+		$temp.="    $(\"input[name='{$campo}_date.{$table}.{$j}']\").bind('keyup',function() {\n";
 		$temp.="        mascara(this,'/',new Array(2,2,4),true);\n";
 		$temp.="    });\n";
-		$temp.="    $(\"input[name='${campo}_date.${table}.${j}']\").datepicker({\n";
+		$temp.="    $(\"input[name='{$campo}_date.{$table}.{$j}']\").datepicker({\n";
 		$temp.="        dateFormat:'dd/mm/yy',\n";
 		$temp.="        firstDay:1,\n";
 		$temp.="        numberOfMonths:3,\n";
@@ -1902,10 +1902,10 @@ function putdatetime($campo,$table,$valor,$j,$myform) {
 		$temp.="    });\n";
 		$temp.="});\n";
 		$temp.="</script>\n";
-		$temp.=getinput($table,$campo."_time",substr($valor,11,5),16,$j,0,"onkeyup=\"javascript:mascara(this,':',new Array(2,2),true)\" onchange=\"${onchange}\"");
+		$temp.=getinput($table,$campo."_time",substr($valor,11,5),16,$j,0,"onkeyup=\"javascript:mascara(this,':',new Array(2,2),true)\" onchange=\"{$onchange}\"");
 		list($title,$text)=make_title_text("clock",_LANG("functions_putform_time_button"),_LANG("functions_putform_time_button_title"),"");
 		$temp.="&nbsp;<img src='lib/crystal/16x16/clock.png' title='$title' width='16px' height='16px' />";
-		$temp.="<input type='hidden' name='${campo}.${table}.${j}' id='${campo}.${table}.${j}' value='${valor}' />";
+		$temp.="<input type='hidden' name='{$campo}.{$table}.{$j}' id='{$campo}.{$table}.{$j}' value='{$valor}' />";
 	} else {
 		$temp="<table class='tables2' style='width:600px'><tr><td><div class='texts' style='width:600px;overflow:hidden;'>$valor</div></td></tr></table>";
 	}
@@ -2212,21 +2212,21 @@ function prepare_buttons($tipos,$variable) {
 	$buttons.="</select>";
 	$buttons.="&nbsp;";
 	list($title,$text)=make_title_text("new_window",_LANG("functions_preparebuttons_button_add"),_LANG("functions_preparebuttons_button_add_title"),_LANG("functions_preparebuttons_button_add"));
-	$url="add_data(this,\"${variable}\",\"\");";
+	$url="add_data(this,\"{$variable}\",\"\");";
 	$buttons.=get_button($title,$url,"","22","",$text);
 	$buttons.="&nbsp;";
 	// MONTAR BOTON SUBIR
 	list($title,$text)=make_title_text("1downarrow",_LANG("functions_preparebuttons_button_moveup"),_LANG("functions_preparebuttons_button_moveup_title"),"");
-	$url="up_data(this,\"${variable}\");";
+	$url="up_data(this,\"{$variable}\");";
 	$borrar="&nbsp;";
 	$borrar.=get_button($title,$url,"","22","",$text);
 	// MONTAR BOTON BAJAR
 	list($title,$text)=make_title_text("1uparrow",_LANG("functions_preparebuttons_button_movedown"),_LANG("functions_preparebuttons_button_movedown_title"),"");
-	$url="down_data(this,\"${variable}\");";
+	$url="down_data(this,\"{$variable}\");";
 	$borrar.=get_button($title,$url,"","22","",$text);
 	// MONTAR BOTON BORRAR
 	list($title,$text)=make_title_text("button_cancel",_LANG("functions_preparebuttons_button_delete"),_LANG("functions_preparebuttons_button_delete_title"),"");
-	$url="del_data(this,\"${variable}\");";
+	$url="del_data(this,\"{$variable}\");";
 	$borrar.=get_button($title,$url,"","22","",$text);
 	$borrar.="&nbsp;";
 	return array($buttons,$borrar);
@@ -2313,10 +2313,10 @@ function putajaxdinamic($table,$variable,$form,$default) {
 			if(!isset($dinamics[$type])) die(_LANG("functions_putajaxdinamic_unknown_type").$type);
 			$tipo=$dinamics[$type]["type"];
 			$texto=$dinamics[$type]["text"];
-			$campo="$val.${temp[1]}.${temp[2]}";
-			$campo_file="${val}_file.${temp[1]}.${temp[2]}";
-			$campo_size="${val}_size.${temp[1]}.${temp[2]}";
-			$campo_type="${val}_type.${temp[1]}.${temp[2]}";
+			$campo="$val.{$temp[1]}.{$temp[2]}";
+			$campo_file="{$val}_file.{$temp[1]}.{$temp[2]}";
+			$campo_size="{$val}_size.{$temp[1]}.{$temp[2]}";
+			$campo_type="{$val}_type.{$temp[1]}.{$temp[2]}";
 			settds("thead");
 			$borrar2=isset($borrar)?$borrar:"";
 			if(($tipo=="file" || $tipo=="photo") && check_demo("user")) $borrar2="";
@@ -2496,20 +2496,20 @@ function check_data_dinamic($campo,$table,$j) {
 	global $row;
 
 	if(!isset($dinamics)) getdinamicsconfig();
-	$names=getParam("${campo}_${table}_${j}_name");
-	$tipos=getParam("${campo}_${table}_${j}_type");
-	$grupos=getParam("${campo}_${table}_${j}_group");
+	$names=getParam("{$campo}_{$table}_{$j}_name");
+	$tipos=getParam("{$campo}_{$table}_{$j}_type");
+	$grupos=getParam("{$campo}_{$table}_{$j}_group");
 	$row["$campo.$table.$j"]="$names|$tipos|$grupos";
 	if($names!="" && $tipos!="") {
 		$names=explode(",",$names);
 		$tipos=explode(",",$tipos);
 		foreach($names as $key=>$name) {
 			$tipo=$tipos[$key];
-			$row["$name.$table.$j"]=getParam("${name}_${table}_${j}");
+			$row["$name.$table.$j"]=getParam("{$name}_{$table}_{$j}");
 			if($dinamics[$tipo]["type"]=="photo" || $dinamics[$tipo]["type"]=="file") {
-				$row["${name}_file.$table.$j"]=getParam("${name}_file_${table}_${j}");
-				$row["${name}_size.$table.$j"]=getParam("${name}_size_${table}_${j}");
-				$row["${name}_type.$table.$j"]=getParam("${name}_type_${table}_${j}");
+				$row["{$name}_file.$table.$j"]=getParam("{$name}_file_{$table}_{$j}");
+				$row["{$name}_size.$table.$j"]=getParam("{$name}_size_{$table}_{$j}");
+				$row["{$name}_type.$table.$j"]=getParam("{$name}_type_{$table}_{$j}");
 			}
 		}
 	}
@@ -2526,7 +2526,7 @@ function update_data_dinamic($campo,$table,$j) {
 			break;
 		}
 	}
-	$oldvalue=getParam("${campo}_${table}_${j}");
+	$oldvalue=getParam("{$campo}_{$table}_{$j}");
 	$tocheck=array();
 	if($oldvalue!="" && $oldvalue!="|" && $oldvalue!="||") {
 		$temp=explode("|",$oldvalue);
@@ -2535,21 +2535,21 @@ function update_data_dinamic($campo,$table,$j) {
 		foreach($temp[0] as $key=>$val) {
 			$tipo=$temp[1][$key];
 			if($dinamics[$tipo]["type"]=="photo" || $dinamics[$tipo]["type"]=="file") {
-				$query="SELECT ${val}_file FROM $table WHERE id='$j'";
+				$query="SELECT {$val}_file FROM $table WHERE id='$j'";
 				$result=dbQuery($query);
 				$row=dbFetchRow($result);
 				dbFree($result);
-				if(!isset($row["${val}_file"])) $row["${val}_file"]="";
-				$tocheck[$val]=$row["${val}_file"];
-				$key2="${val}_file_${table}_${j}";
-				if(getParam($key2)=="") $_POST[$key2]=$row["${val}_file"];
+				if(!isset($row["{$val}_file"])) $row["{$val}_file"]="";
+				$tocheck[$val]=$row["{$val}_file"];
+				$key2="{$val}_file_{$table}_{$j}";
+				if(getParam($key2)=="") $_POST[$key2]=$row["{$val}_file"];
 			}
 		}
 	}
-	$names=getParam("${campo}_${table}_${j}_name");
-	$tipos=getParam("${campo}_${table}_${j}_type");
-	$grupos=getParam("${campo}_${table}_${j}_group");
-	$_POST["${campo}_${table}_${j}"]="$names|$tipos|$grupos";
+	$names=getParam("{$campo}_{$table}_{$j}_name");
+	$tipos=getParam("{$campo}_{$table}_{$j}_type");
+	$grupos=getParam("{$campo}_{$table}_{$j}_group");
+	$_POST["{$campo}_{$table}_{$j}"]="$names|$tipos|$grupos";
 	$patron=$campo."_count_";
 	$temps=getcolumns($table,$patron);
 	$counters=array();
@@ -2581,12 +2581,12 @@ function update_data_dinamic($campo,$table,$j) {
 			}
 		}
 	}
-	$_POST["${campo}_count_${table}_${j}"]=$counter;
-	$campos[]="${campo}_count";
+	$_POST["{$campo}_count_{$table}_{$j}"]=$counter;
+	$campos[]="{$campo}_count";
 	$types[]="text";
 	foreach($counters as $key=>$val) {
 		$campo2=$patron.$key;
-		$_POST["${campo2}_${table}_${j}"]=$val;
+		$_POST["{$campo2}_{$table}_{$j}"]=$val;
 		$campos[]=$campo2;
 		$types[]="text";
 	}
@@ -2602,8 +2602,8 @@ function update_data_dinamic($campo,$table,$j) {
 		if($borrar && file_exists("files/".$val) && is_file("files/".$val)) unlink("files/".$val);
 	}
 	if(column_exists($table,$campo."_search")) {
-		$prefijo="${campo}_search";
-		$sufijo="_${table}_${j}";
+		$prefijo="{$campo}_search";
+		$sufijo="_{$table}_{$j}";
 		$_POST[$prefijo.$sufijo]=array();
 		$campos[]=$prefijo;
 		$types[]="text";
@@ -2986,59 +2986,59 @@ function process_query($usepag=1,$onlycount=0) {
 				$text_ref=parseQuery($text_ref,getdbtype());
 				$lista_campos=myconcat($text_ref,",",$lista_campos);
 			} elseif($table==$table_ref) {
-				$lista_tables=myconcat("LEFT JOIN `${table_ref}` as `${table_ref}_filter_${i}` ON `${table}`.`${campo_real}`=`${table_ref}_filter_${i}`.`${value_ref}`"," ",$lista_tables);
-				$lista_campos=myconcat("`${table_ref}_filter_${i}`.`${text_ref}` as `${table_ref}_filter_${i}_${text_ref}`",",",$lista_campos);
+				$lista_tables=myconcat("LEFT JOIN `{$table_ref}` as `{$table_ref}_filter_{$i}` ON `{$table}`.`{$campo_real}`=`{$table_ref}_filter_{$i}`.`{$value_ref}`"," ",$lista_tables);
+				$lista_campos=myconcat("`{$table_ref}_filter_{$i}`.`{$text_ref}` as `{$table_ref}_filter_{$i}_{$text_ref}`",",",$lista_campos);
 			} else {
-				$lista_campos=myconcat("`${table_ref}_${i}`.`${text_ref}` as `${table_ref}_${i}_${text_ref}`",",",$lista_campos);
+				$lista_campos=myconcat("`{$table_ref}_{$i}`.`{$text_ref}` as `{$table_ref}_{$i}_{$text_ref}`",",",$lista_campos);
 			}
 			if($table!=$table_ref) {
 				if($tipo=="select") {
-					$lista_tables=myconcat("LEFT JOIN `${table_ref}` as `${table_ref}_${i}` ON `${table}`.`${campo_real}`=`${table_ref}_${i}`.`${value_ref}`"," ",$lista_tables);
+					$lista_tables=myconcat("LEFT JOIN `{$table_ref}` as `{$table_ref}_{$i}` ON `{$table}`.`{$campo_real}`=`{$table_ref}_{$i}`.`{$value_ref}`"," ",$lista_tables);
 				} else {
-					$temp2="LEFT JOIN `${table_ref}` as `${table_ref}_${i}` ON /*MYSQL FIND_IN_SET(`${table_ref}_${i}`.`${value_ref}`,`${table}`.`${campo_real}`) *//*SQLITE (`${table}`.`${campo_real}` LIKE `${table_ref}_${i}`.`${value_ref}` OR `${table}`.`${campo_real}` LIKE '%,' || `${table_ref}_${i}`.`${value_ref}` OR `${table}`.`${campo_real}` LIKE '%,' || `${table_ref}_${i}`.`${value_ref}` || ',%' OR `${table}`.`${campo_real}` LIKE `${table_ref}_${i}`.`${value_ref}` || ',%') */";
+					$temp2="LEFT JOIN `{$table_ref}` as `{$table_ref}_{$i}` ON /*MYSQL FIND_IN_SET(`{$table_ref}_{$i}`.`{$value_ref}`,`{$table}`.`{$campo_real}`) *//*SQLITE (`{$table}`.`{$campo_real}` LIKE `{$table_ref}_{$i}`.`{$value_ref}` OR `{$table}`.`{$campo_real}` LIKE '%,' || `{$table_ref}_{$i}`.`{$value_ref}` OR `{$table}`.`{$campo_real}` LIKE '%,' || `{$table_ref}_{$i}`.`{$value_ref}` || ',%' OR `{$table}`.`{$campo_real}` LIKE `{$table_ref}_{$i}`.`{$value_ref}` || ',%') */";
 					$temp2=parseQuery($temp2,getdbtype());
 					$lista_tables=myconcat($temp2," ",$lista_tables);
 				}
 			}
-			$lista_campos=myconcat("`${table}`.`${campo_real}` as `${table}_${campo_real}`",",",$lista_campos);
-			if($table!=$table_ref) $lista_campos=myconcat("`${table_ref}_${i}`.`${value_ref}` as `${table_ref}_${i}_${value_ref}`",",",$lista_campos);
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}` as `{$table}_{$campo_real}`",",",$lista_campos);
+			if($table!=$table_ref) $lista_campos=myconcat("`{$table_ref}_{$i}`.`{$value_ref}` as `{$table_ref}_{$i}_{$value_ref}`",",",$lista_campos);
 			if($search_string!="") {
 				if($table==$table_ref) {
-					$lista_search=myconcatsearch($search_array,$count_array,$lista_search,"${table_ref}_filter_${i}.${text_ref}");
+					$lista_search=myconcatsearch($search_array,$count_array,$lista_search,"{$table_ref}_filter_{$i}.{$text_ref}");
 				} else {
-					$lista_search=myconcatsearch($search_array,$count_array,$lista_search,"${table_ref}_${i}.${text_ref}");
+					$lista_search=myconcatsearch($search_array,$count_array,$lista_search,"{$table_ref}_{$i}.{$text_ref}");
 				}
 			}
 		} elseif($tipo=="file" || $tipo=="photo") {
-			$lista_campos=myconcat("`${table}`.`${campo_real}` as `${table}_${campo_real}`",",",$lista_campos);
-			$lista_campos=myconcat("`${table}`.`${campo_real}_file` as `${table}_${campo_real}_file`",",",$lista_campos);
-			$lista_campos=myconcat("`${table}`.`${campo_real}_size` as `${table}_${campo_real}_size`",",",$lista_campos);
-			$lista_campos=myconcat("`${table}`.`${campo_real}_type` as `${table}_${campo_real}_type`",",",$lista_campos);
-			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"${table}.${campo_real}");
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}` as `{$table}_{$campo_real}`",",",$lista_campos);
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}_file` as `{$table}_{$campo_real}_file`",",",$lista_campos);
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}_size` as `{$table}_{$campo_real}_size`",",",$lista_campos);
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}_type` as `{$table}_{$campo_real}_type`",",",$lista_campos);
+			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"{$table}.{$campo_real}");
 		} elseif($tipo=="date") {
-			$lista_campos=myconcat("`${table}`.`${campo_real}` as `${table}_${campo_real}`",",",$lista_campos);
-			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"/*MYSQL CONCAT(SUBSTRING(${table}.${campo_real},9,2),'/',SUBSTRING(${table}.${campo_real},6,2),'/',SUBSTRING(${table}.${campo_real},1,4)) *//*SQLITE SUBSTR(${table}.${campo_real},9,2) || '/' || SUBSTR(${table}.${campo_real},6,2) || '/' || SUBSTR(${table}.${campo_real},1,4) */");
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}` as `{$table}_{$campo_real}`",",",$lista_campos);
+			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"/*MYSQL CONCAT(SUBSTRING({$table}.{$campo_real},9,2),'/',SUBSTRING({$table}.{$campo_real},6,2),'/',SUBSTRING({$table}.{$campo_real},1,4)) *//*SQLITE SUBSTR({$table}.{$campo_real},9,2) || '/' || SUBSTR({$table}.{$campo_real},6,2) || '/' || SUBSTR({$table}.{$campo_real},1,4) */");
 		} elseif($tipo=="unixtime" || $tipo=="timestamp") {
-			$lista_campos=myconcat("`${table}`.`${campo_real}` as `${table}_${campo_real}`",",",$lista_campos);
-			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"/*MYSQL FROM_UNIXTIME(${table}.${campo_real},'%d/%m/%Y %H:%i') *//*SQLITE STRFTIME('%d/%m/%Y %H:%M',${table}.${campo_real},'UNIXEPOCH','LOCALTIME') */");
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}` as `{$table}_{$campo_real}`",",",$lista_campos);
+			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"/*MYSQL FROM_UNIXTIME({$table}.{$campo_real},'%d/%m/%Y %H:%i') *//*SQLITE STRFTIME('%d/%m/%Y %H:%M',{$table}.{$campo_real},'UNIXEPOCH','LOCALTIME') */");
 		} elseif($tipo=="datetime") {
-			$lista_campos=myconcat("`${table}`.`${campo_real}` as `${table}_${campo_real}`",",",$lista_campos);
-			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"/*MYSQL CONCAT(SUBSTRING(${table}.${campo_real},9,2),'/',SUBSTRING(${table}.${campo_real},6,2),'/',SUBSTRING(${table}.${campo_real},1,4),' ',SUBSTRING(${table}.${campo_real},12,5)) *//*SQLITE SUBSTR(${table}.${campo_real},9,2) || '/' || SUBSTR(${table}.${campo_real},6,2) || '/' || SUBSTR(${table}.${campo_real},1,4) || ' ' || SUBSTR(${table}.${campo_real},12,5) */");
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}` as `{$table}_{$campo_real}`",",",$lista_campos);
+			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"/*MYSQL CONCAT(SUBSTRING({$table}.{$campo_real},9,2),'/',SUBSTRING({$table}.{$campo_real},6,2),'/',SUBSTRING({$table}.{$campo_real},1,4),' ',SUBSTRING({$table}.{$campo_real},12,5)) *//*SQLITE SUBSTR({$table}.{$campo_real},9,2) || '/' || SUBSTR({$table}.{$campo_real},6,2) || '/' || SUBSTR({$table}.{$campo_real},1,4) || ' ' || SUBSTR({$table}.{$campo_real},12,5) */");
 		} elseif($temp[0]=="concat") {
 			unset($temp[0]);
 			$alias_real=encode_bad_chars(implode("_",$temp));
-			foreach($temp as $key=>$val) if(strpos($val,"'")===false) $temp[$key]="`${table}`.`${val}`";
+			foreach($temp as $key=>$val) if(strpos($val,"'")===false) $temp[$key]="`{$table}`.`{$val}`";
 			$campo_real="/*MYSQL CONCAT(".implode(",",$temp).") *//*SQLITE ".implode(" || ",$temp)." */";
-			$lista_campos=myconcat("${campo_real} as `${table}_${alias_real}`",",",$lista_campos);
+			$lista_campos=myconcat("{$campo_real} as `{$table}_{$alias_real}`",",",$lista_campos);
 			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,$campo_real);
 		} else {
-			$lista_campos=myconcat("`${table}`.`${campo_real}` as `${table}_${campo_real}`",",",$lista_campos);
-			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"${table}.${campo_real}");
+			$lista_campos=myconcat("`{$table}`.`{$campo_real}` as `{$table}_{$campo_real}`",",",$lista_campos);
+			if($search_string!="") $lista_search=myconcatsearch($search_array,$count_array,$lista_search,"{$table}.{$campo_real}");
 		}
 	}
 	if($lista_search=="0") $lista_search="1";
-	$query="SELECT ${lista_campos} FROM ${lista_tables} WHERE ${lista_wheres} AND (${lista_search}) GROUP BY `${table}`.`id` ${post_query}";
-	if($onlycount) $query="SELECT count(`${table}_id`) as `count` FROM (${query}) count";
+	$query="SELECT {$lista_campos} FROM {$lista_tables} WHERE {$lista_wheres} AND ({$lista_search}) GROUP BY `{$table}`.`id` {$post_query}";
+	if($onlycount) $query="SELECT count(`{$table}_id`) as `count` FROM ({$query}) count";
 	//echo "<br/>$query<br/>";
 	return $query;
 }
@@ -3210,10 +3210,10 @@ function debug($txt) {
 function make_title_text($icon,$title1,$title2,$text1,$size="48") {
 	$size=explode(":",$size);
 	if(!isset($size[1])) $size[1]="16";
-	$icon_a=file_exists("lib/crystal/${size[0]}x${size[0]}/$icon.png")?$icon:"kblackbox";
-	$title="<table><tr><td rowspan=\"2\" valign=\"top\"><img src=\"lib/crystal/${size[0]}x${size[0]}/$icon_a.png\" align=\"top\" /></td><td height=\"1\" valign=\"top\"><em>$title1</em></td></tr><tr><td valign=\"top\">$title2</td></tr></table>";
-	$icon_b=file_exists("lib/crystal/${size[1]}x${size[1]}/$icon.png")?$icon:"kblackbox";
-	$text="<img src='lib/crystal/${size[1]}x${size[1]}/$icon_b.png' width='${size[1]}px' height='${size[1]}px' />";
+	$icon_a=file_exists("lib/crystal/{$size[0]}x{$size[0]}/$icon.png")?$icon:"kblackbox";
+	$title="<table><tr><td rowspan=\"2\" valign=\"top\"><img src=\"lib/crystal/{$size[0]}x{$size[0]}/$icon_a.png\" align=\"top\" /></td><td height=\"1\" valign=\"top\"><em>$title1</em></td></tr><tr><td valign=\"top\">$title2</td></tr></table>";
+	$icon_b=file_exists("lib/crystal/{$size[1]}x{$size[1]}/$icon.png")?$icon:"kblackbox";
+	$text="<img src='lib/crystal/{$size[1]}x{$size[1]}/$icon_b.png' width='{$size[1]}px' height='{$size[1]}px' />";
 	if($text1!="") $text.="&nbsp;$text1";
 	return array($title,$text);
 }
@@ -3221,10 +3221,10 @@ function make_title_text($icon,$title1,$title2,$text1,$size="48") {
 function make_title_icon($icon,$title1,$title2,$url,$size="48") {
 	$size=explode(":",$size);
 	if(!isset($size[1])) $size[1]="16";
-	$icon_a=file_exists("lib/crystal/${size[0]}x${size[0]}/$icon.png")?$icon:"kblackbox";
-	$title="<table><tr><td rowspan=2 valign=\"top\"><img src=\"lib/crystal/${size[0]}x${size[0]}/$icon_a.png\" align=\"top\" /></td><td height=\"1\" valign=\"top\"><em>$title1</em></td></tr><tr><td valign=\"top\">$title2</td></tr></table>";
-	$icon_b=file_exists("lib/crystal/${size[1]}x${size[1]}/$icon.png")?$icon:"kblackbox";
-	$text="<a href='javascript:$url'><img title='$title' src='lib/crystal/${size[1]}x${size[1]}/$icon_b.png' width='${size[1]}px' height='${size[1]}px' /></a>";
+	$icon_a=file_exists("lib/crystal/{$size[0]}x{$size[0]}/$icon.png")?$icon:"kblackbox";
+	$title="<table><tr><td rowspan=2 valign=\"top\"><img src=\"lib/crystal/{$size[0]}x{$size[0]}/$icon_a.png\" align=\"top\" /></td><td height=\"1\" valign=\"top\"><em>$title1</em></td></tr><tr><td valign=\"top\">$title2</td></tr></table>";
+	$icon_b=file_exists("lib/crystal/{$size[1]}x{$size[1]}/$icon.png")?$icon:"kblackbox";
+	$text="<a href='javascript:$url'><img title='$title' src='lib/crystal/{$size[1]}x{$size[1]}/$icon_b.png' width='{$size[1]}px' height='{$size[1]}px' /></a>";
 	return $text;
 }
 
@@ -3285,7 +3285,7 @@ function encode_bad_chars($param) {
 }
 
 function get_loading($padding=0) {
-	$temp="<table cellpadding=\"1\" cellspacing=\"1\" border=\"0\" class=\"ui-state-highlight ui-corner-all\" style=\"padding:${padding}px\"><tr><td><img src=\"img/spinner.gif\" width=\"16px\" height=\"16px\" /></td><td class=\"texts2\">&nbsp;"._LANG("functions_getloading_title")."&nbsp;</td></tr></table>";
+	$temp="<table cellpadding=\"1\" cellspacing=\"1\" border=\"0\" class=\"ui-state-highlight ui-corner-all\" style=\"padding:{$padding}px\"><tr><td><img src=\"img/spinner.gif\" width=\"16px\" height=\"16px\" /></td><td class=\"texts2\">&nbsp;"._LANG("functions_getloading_title")."&nbsp;</td></tr></table>";
 	return $temp;
 }
 

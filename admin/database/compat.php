@@ -52,7 +52,7 @@ function dbConnect() {
 }
 
 function dbQuery($query,$fetch="query") {
-	db_query("SET SQL_MODE='ALLOW_INVALID_DATES'");
+	db_query("/*MYSQL SET SQL_MODE='ALLOW_INVALID_DATES'*/");
 	return db_query($query,$fetch);
 }
 
