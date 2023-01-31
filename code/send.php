@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -152,8 +152,8 @@ function send($param) {
 			$valid=1;
 			if($captcha!="") {
 				// CHECK VALUE
-				$captcha1=sessions("GET ${captcha}_value");
-				sessions("SET ${captcha}_value NULL");
+				$captcha1=sessions("GET {$captcha}_value");
+				sessions("SET {$captcha}_value NULL");
 				$captcha2=getParam($captcha);
 				if(strlen($captcha1)==0) $valid=0;
 				if(strlen($captcha2)==0) $valid=0;
@@ -161,8 +161,8 @@ function send($param) {
 				if($captcha2=="NULL") $valid=0;
 				if($captcha1!=$captcha2) $valid=0;
 				// CHECK IPADDR
-				$captcha1=sessions("GET ${captcha}_ipaddr");
-				sessions("SET ${captcha}_ipaddr NULL");
+				$captcha1=sessions("GET {$captcha}_ipaddr");
+				sessions("SET {$captcha}_ipaddr NULL");
 				$captcha2=isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"NULL";
 				if(strlen($captcha1)==0) $valid=0;
 				if(strlen($captcha2)==0) $valid=0;
@@ -299,4 +299,3 @@ function _send_new_location($param,$has_error="",$error="") {
 	echo_buffer("</script>\n");
 	die();
 }
-?>

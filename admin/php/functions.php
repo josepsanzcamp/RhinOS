@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -185,28 +185,28 @@ function openbody($title="",$body="") {
 	echo "<script language='javascript' type='text/javascript' src='js/dinamics.js'></script>\n";
 	echo "<script type='text/javascript' language='javascript' src='js/default.js'></script>\n";
 	echo "<script src='lib/jquery/jquery.ui.datepicker-"._LANG("lang").".js' type='text/javascript' language='javascript'></script>\n";
-	echo "<link rel='stylesheet' href='lib/jquery/jquery.colorpicker.css' type='text/css' media='screen'>\n";
-	echo "<script src='lib/jquery/jquery.colorpicker.js' type='text/javascript' language='javascript'></script>\n";
-	echo "<script src='lib/jquery/jquery.autogrow-textarea.js' type='text/javascript' language='javascript'></script>\n";
+	echo "<link rel='stylesheet' href='lib/jquery/jquery.colorpicker.min.css' type='text/css' media='screen'>\n";
+	echo "<script src='lib/jquery/jquery.colorpicker.min.js' type='text/javascript' language='javascript'></script>\n";
+	echo "<script src='lib/jquery/jquery.autogrow-textarea.min.js' type='text/javascript' language='javascript'></script>\n";
 	put_javascript_msgbox();
 	put_javascript_var("table",$table);
+	echo "<script>window.CKEDITOR_BASEPATH='lib/ckeditor/';</script>\n";
 	echo "<script type='text/javascript' src='lib/ckeditor/ckeditor.js'></script>\n";
 	echo "<script type='text/javascript' src='lib/ckeditor/adapters/jquery.js'></script>\n";
 	echo "<script type='text/javascript'>";
 	echo "$(document).ready(function() {";
 	echo "  CKEDITOR.config.title='';";
 	echo "  CKEDITOR.config.skin='moono-lisa';";
-	echo "  CKEDITOR.config.extraPlugins='codesnippetgeshi,autogrow,base64image';";
+	echo "  CKEDITOR.config.extraPlugins='autogrow';";
 	echo "  CKEDITOR.config.removePlugins='elementspath';";
 	echo "  CKEDITOR.config.enterMode=CKEDITOR.ENTER_BR;";
 	echo "  CKEDITOR.config.shiftEnterMode=CKEDITOR.ENTER_BR;";
-	echo "  CKEDITOR.config.toolbar=[['Bold', 'Italic', 'Underline', 'Strike'], ['NumberedList', 'BulletedList'], ['Outdent', 'Indent'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink'],['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo'], ['SelectAll', 'RemoveFormat'], ['Maximize', 'Source', 'CodeSnippet', 'base64image', 'HorizontalRule', 'Table'],['TextColor', 'BGColor']];";
+	echo "  CKEDITOR.config.toolbar=[['Bold', 'Italic', 'Underline', 'Strike'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink'],['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo'], ['SelectAll', 'RemoveFormat'], ['Maximize', 'Source', 'HorizontalRule', 'Table'],['TextColor', 'BGColor']];";
 	echo "  CKEDITOR.config.language='"._LANG("lang")."';";
 	echo "  CKEDITOR.config.autoGrow_onStartup=true;";
 	echo "  CKEDITOR.config.autoGrow_minHeight=150;";
 	echo "  CKEDITOR.config.disableNativeSpellChecker=false;";
 	echo "  CKEDITOR.config.resize_enabled=false;";
-	echo "  CKEDITOR.config.codeSnippetGeshi_url='../geshi/colorize.php';";
 	//~ echo "  CKEDITOR.config.width=612;";
 	//~ echo "  CKEDITOR.config.height=150;";
 	//~ echo "  $('body').append('<div id=\"ui-color-ckeditor\" class=\"ui-widget-header\"></div>');";
@@ -1640,7 +1640,7 @@ function getrandomicon($key) {
 		$hash=crc32($key);
 		$index=$hash%$count;
 	} else {
-		srand((float)microtime()*10000000);
+		srand(intval(microtime(true))*10000000);
 		$index=rand(0,$count-1);
 	}
 	$icon=getvalue("def_icons","icon",$index);
@@ -3702,4 +3702,3 @@ function text_cutter(&$valor,$size) {
 	}
 	return $title;
 }
-?>

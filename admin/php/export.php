@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ if(!function_exists("getParam")) {
 		die();
 	}
 	$format=getParam("format");
-	srand((float)microtime()*10000000);
+	srand(intval(microtime(true))*10000000);
 	$cache=get_temp_directory().md5(uniqid(rand(),true)).".".substr($format,0,3);
 	$title=_LANG("export_label_list_of").getnametable($table);
 	switch($format) {
@@ -50,7 +50,7 @@ if(!function_exists("getParam")) {
 			$marginfooter=20;
 			$widthcol1=50;
 			$widthcol2=120;
-			include("lib/tcpdf/tcpdf.php");
+			include("lib/tcpdf/vendor/autoload.php");
 			class PDF extends TCPDF {
 				function Header() {
 					global $marginleft,$marginheader,$margintop;
@@ -90,9 +90,8 @@ if(!function_exists("getParam")) {
 			break;
 		case "xls5":
 		case "xls7":
-			set_include_path("lib/phpexcel");
-			include("PHPExcel.php");
-			$objPHPExcel = new PHPExcel();
+			require_once "lib/phpspreadsheet/vendor/autoload.php";
+			$objPHPExcel = new PhpOffice\PhpSpreadsheet\Spreadsheet();
 			$objPHPExcel->getProperties()->setCreator($title);
 			$objPHPExcel->getProperties()->setLastModifiedBy($title);
 			$objPHPExcel->getProperties()->setTitle($title);
@@ -188,7 +187,7 @@ if(!function_exists("getParam")) {
 	$limit=checkNumberInf(getParam("limit"));
 	$offset=checkNumber(getParam("offset"))-1;
 	$query=process_query();
-	$query="SELECT ${table}_id FROM ($query) fix";
+	$query="SELECT {$table}_id FROM ($query) fix";
 	$result=dbQuery($query);
 	$fix=array();
 	while($row=dbFetchRow($result)) $fix[]=$row[$table."_id"];
@@ -199,7 +198,7 @@ if(!function_exists("getParam")) {
 	$textos=$textos_fix;
 	// APPLY THE FIX AND CONTINUE
 	$query=process_query();
-	$query="SELECT * FROM ($query) fix WHERE ${table}_id IN ($fix)";
+	$query="SELECT * FROM ($query) fix WHERE {$table}_id IN ($fix)";
 	$result=dbQuery($query);
 	if(dbNumRows($result)==0) {
 		$head=1;$main=0;$tail=0;
@@ -373,10 +372,10 @@ if(!function_exists("getParam")) {
 						$preimage=get_temp_directory().md5($oldimage).".jpg";
 						$newimage=get_temp_directory().md5($oldimage.$pixels).".jpg";
 						if(!file_exists($newimage)) {
-							system("convert ${oldimage} -quality 70 ${preimage}");
+							system("convert {$oldimage} -quality 70 {$preimage}");
 							$size=getimagesize($preimage);
 							if($size[0]>$pixels || $size[1]>$pixels) {
-								system("convert ${oldimage} -resize ${pixels}x${pixels} -quality 70 ${newimage}");
+								system("convert {$oldimage} -resize {$pixels}x{$pixels} -quality 70 {$newimage}");
 							} else {
 								rename($preimage,$newimage);
 							}
@@ -515,12 +514,10 @@ if(!function_exists("getParam")) {
 			$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
 			$objPHPExcel->setActiveSheetIndex(0);
 			if($format=="xls5") {
-				include("PHPExcel/Writer/Excel5.php");
-				$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);
+				$objWriter = PhpOffice\PhpSpreadsheet\IOFactory::createWriter($objPHPExcel, "Xls");
 			}
 			if($format=="xls7") {
-				include("PHPExcel/Writer/Excel2007.php");
-				$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+				$objWriter = PhpOffice\PhpSpreadsheet\IOFactory::createWriter($objPHPExcel, "Xlsx");
 			}
 			$objWriter->save($cache);
 			$mime="application/x-excel";
@@ -687,4 +684,3 @@ putcolumn($temp,"center","","2");
 closerow();
 closeform();
 closef1form();
-?>

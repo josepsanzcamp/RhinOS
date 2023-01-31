@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -36,9 +36,9 @@ function _sessions_close() {
 function _sessions_read($id) {
 	global $sess_save_path;
 	global $sess_hash;
-	$sess_file="${sess_save_path}/${id}";
+	$sess_file="{$sess_save_path}/{$id}";
 	$oldcache=setUseCache("false");
-	$query="SELECT sess_data FROM db_sessions WHERE sess_file='${sess_file}'";
+	$query="SELECT sess_data FROM db_sessions WHERE sess_file='{$sess_file}'";
 	$result=dbQuery($query);
 	setUseCache($oldcache);
 	$numrows=dbNumRows($result);
@@ -57,27 +57,27 @@ function _sessions_read($id) {
 function _sessions_write($id,$sess_data) {
 	global $sess_save_path;
 	global $sess_hash;
-	$sess_file="${sess_save_path}/${id}";
+	$sess_file="{$sess_save_path}/{$id}";
 	$sess_time=time();
 	$sess_temp=md5($sess_data);
 	$sess_data=base64_encode($sess_data);
 	$oldcache=setUseCache("false");
-	$query="SELECT id FROM db_sessions WHERE sess_file='${sess_file}'";
+	$query="SELECT id FROM db_sessions WHERE sess_file='{$sess_file}'";
 	$result=dbQuery($query);
 	setUseCache($oldcache);
 	$numrows=dbNumRows($result);
 	dbFree($result);
 	if($numrows>1) {
-		$query="DELETE FROM db_sessions WHERE sess_file='${sess_file}'";
+		$query="DELETE FROM db_sessions WHERE sess_file='{$sess_file}'";
 		dbQuery($query);
 		$numrows=0;
 	}
 	if($numrows>0) {
-		$query="UPDATE db_sessions SET sess_data='${sess_data}', sess_time='${sess_time}' WHERE sess_file='${sess_file}'";
-		if($sess_hash==$sess_temp) $query="UPDATE db_sessions SET sess_time='${sess_time}' WHERE sess_file='${sess_file}'";
+		$query="UPDATE db_sessions SET sess_data='{$sess_data}', sess_time='{$sess_time}' WHERE sess_file='{$sess_file}'";
+		if($sess_hash==$sess_temp) $query="UPDATE db_sessions SET sess_time='{$sess_time}' WHERE sess_file='{$sess_file}'";
 		dbQuery($query);
 	} else {
-		$query="INSERT INTO db_sessions (id,sess_file,sess_data,sess_time) VALUES (NULL,'${sess_file}','${sess_data}','${sess_time}')";
+		$query="INSERT INTO db_sessions (id,sess_file,sess_data,sess_time) VALUES (NULL,'{$sess_file}','{$sess_data}','{$sess_time}')";
 		dbQuery($query);
 	}
 	return true;
@@ -85,15 +85,15 @@ function _sessions_write($id,$sess_data) {
 
 function _sessions_destroy($id) {
 	global $sess_save_path;
-	$sess_file="${sess_save_path}/${id}";
-	$query="DELETE FROM db_sessions WHERE sess_file='${sess_file}'";
+	$sess_file="{$sess_save_path}/{$id}";
+	$query="DELETE FROM db_sessions WHERE sess_file='{$sess_file}'";
 	dbQuery($query);
 	return true ;
 }
 
 function _sessions_gc($maxlifetime) {
 	$sess_time=time()-$maxlifetime;
-	$query="DELETE FROM db_sessions WHERE sess_time<${sess_time}";
+	$query="DELETE FROM db_sessions WHERE sess_time<{$sess_time}";
 	dbQuery($query);
 	return true;
 }
@@ -114,4 +114,3 @@ function initsession() {
 function closesession() {
 	session_write_close();
 }
-?>

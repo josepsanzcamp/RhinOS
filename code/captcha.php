@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -71,8 +71,8 @@ function captcha($param) {
 		do {
 			$code=str_pad(rand(0,pow(10,$length)-1),$length,"0",STR_PAD_LEFT);
 		} while(!_captcha_isprime($code));
-		sessions("SET ${id}_value $code");
-		sessions("SET ${id}_ipaddr ".(isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"NULL"));
+		sessions("SET {$id}_value $code");
+		sessions("SET {$id}_ipaddr ".(isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"NULL"));
 		sessions("CLOSE");
 	} elseif($type=="math") {
 		$max=pow(10,round($length/2))-1;
@@ -83,8 +83,8 @@ function captcha($param) {
 			$code=$num1.$oper.$num2;
 			$real=eval("return $code;");
 		} while(strlen($code)!=$length || $real<0 || !_captcha_isprime($num1) || !_captcha_isprime($num2) || substr($num2,0,1)=="7");
-		sessions("SET ${id}_value $real");
-		sessions("SET ${id}_ipaddr ".(isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"NULL"));
+		sessions("SET {$id}_value $real");
+		sessions("SET {$id}_ipaddr ".(isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"NULL"));
 		sessions("CLOSE");
 	} else {
 		die();
@@ -205,4 +205,3 @@ function _captcha_isprime($num) {
 	}
 	return true;
 }
-?>

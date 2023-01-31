@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -280,7 +280,7 @@ function checkDependencies() {
 			if(!file_exists($dep[1]) || !is_dir($dep[1])) $error[]="ERROR:"._LANG("connect_message_dir_not_found").$dep[1];
 			if(!file_exists($dep[1]) || !is_dir($dep[1]) || !is_writable($dep[1])) $error[]="ERROR:"._LANG("connect_message_dir_not_writable").$dep[1];
 		} else {
-			$error[]="ERROR:"._LANG("connect_message_unknown_type")."${dep[0]} for ${dep[1]}";
+			$error[]="ERROR:"._LANG("connect_message_unknown_type")."{$dep[0]} for {$dep[1]}";
 		}
 	}
 }
@@ -499,4 +499,3 @@ global_vars();
 control();
 closesession();
 cache_gc();
-?>

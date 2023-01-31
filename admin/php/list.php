@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -434,7 +434,7 @@ if(!$existsoffset) {
 	$len=3;
 }
 $len=40+$len*7;
-$select="<select name='offset' id='offset' class='inputs ui-state-default ui-corner-all' OnChange='javascript:pagina()' style='width:${len}px' title='$title'>\n";
+$select="<select name='offset' id='offset' class='inputs ui-state-default ui-corner-all' OnChange='javascript:pagina()' style='width:{$len}px' title='$title'>\n";
 $existsoffset=0;
 for($i=0;$i<$total;$i=$i+$oldlimit) {
 	$temp1=intval($i+1);
@@ -466,7 +466,7 @@ if(!$existslimit) {
 	$len=strlen($total);
 }
 $len=40+$len*7;
-$select2="<select name='limit' id='limit' class='inputs ui-state-default ui-corner-all' OnChange='javascript:pagina()' style='width:${len}px' title='$title'>\n";
+$select2="<select name='limit' id='limit' class='inputs ui-state-default ui-corner-all' OnChange='javascript:pagina()' style='width:{$len}px' title='$title'>\n";
 $existslimit=0;
 for($i=10;$i<=100;$i=$i+5) {
 	$selected="";
@@ -577,4 +577,3 @@ echo "        redir(arg);\n";
 echo "    }\n";
 echo "}\n";
 echo "</script>\n";
-?>

@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -31,12 +31,12 @@ if($action=="login") {
 	$pass=getParam("pass");
 	// CONVERT FROM MD5 TO SHA1 FORMAT
 	$oldcahe=setUseCache("false");
-	$query="SELECT * FROM db_users WHERE login='${user}'";
+	$query="SELECT * FROM db_users WHERE login='{$user}'";
 	$result=dbQuery($query);
 	if(dbNumRows($result)==1) {
 		$row=dbFetchRow($result);
 		if($user==$row["login"] && $row["password"]==md5($pass)) {
-			$query="UPDATE db_users SET password='".sha1($pass)."' WHERE login='${user}'";
+			$query="UPDATE db_users SET password='".sha1($pass)."' WHERE login='{$user}'";
 			dbQuery($query);
 		}
 	}
@@ -74,4 +74,3 @@ if($action=="login") {
 $head=0;$main=0;$tail=1;
 include("inicio.php");
 die();
-?>

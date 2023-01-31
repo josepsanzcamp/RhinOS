@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -535,4 +535,3 @@ $_LANG["tblusers_message_full_needed"]="Es necesario entrar todos los datos";
 $_LANG["tblusers_message_password_error"]="Las claves entradas son diferentes";
 $_LANG["tblusers_message_username_exists"]="El usuario que intenta crear ya existe";
 $_LANG["tblusers_message_apps_needed"]="Es necesario seleccionar alguna aplicación";
-?>

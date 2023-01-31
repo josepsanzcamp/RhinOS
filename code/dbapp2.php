@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -665,7 +665,7 @@ function _dbapp2_parser(&$params,$buffer,$row=array(),$row2=array()) {
 				$file=_dbapp2_replace($param[0],array_merge($row,$params),$row2,"ROW");
 				if(isset($fixfile)) {
 					global $plantillas;
-					if(!file_exists("${plantillas}/${dir}/${file}") && !file_exists("admin/files/${file}")) {
+					if(!file_exists("{$plantillas}/{$dir}/{$file}") && !file_exists("admin/files/{$file}")) {
 						$param[0]=$fixfile."_file";
 						$file=_dbapp2_replace($param[0],array_merge($row,$params),$row2,"ROW");
 					}
@@ -684,11 +684,11 @@ function _dbapp2_parser(&$params,$buffer,$row=array(),$row2=array()) {
 				}
 				// CONTINUE
 				if($print) {
-					$temp="${dir}/${file}/${size}/${effects}${real}";
+					$temp="{$dir}/{$file}/{$size}/{$effects}{$real}";
 				} else {
-					if($id!="") $id="id='${id}'";
-					if($class!="") $class="class='${class}'";
-					$temp="<img src='${dir}/${file}/${size}/${effects}${real}' alt=\"${alt}\" title=\"${title}\" ${id} ${class} />";
+					if($id!="") $id="id='{$id}'";
+					if($class!="") $class="class='{$class}'";
+					$temp="<img src='{$dir}/{$file}/{$size}/{$effects}{$real}' alt=\"{$alt}\" title=\"{$title}\" {$id} {$class} />";
 				}
 			} else {
 				if(checkDebug("DEBUG_DBAPP2")) $temp=__TAG1__." WARNING: INCLUDE DBAPP2 IMAGE ".implode(" ",$param).": NOT FOUND ".__TAG2__;
@@ -729,21 +729,21 @@ function _dbapp2_parser(&$params,$buffer,$row=array(),$row2=array()) {
 				$file=_dbapp2_replace($param[0],array_merge($row,$params),$row2,"ROW");
 				if(isset($fixfile)) {
 					global $plantillas;
-					if(!file_exists("${plantillas}/${dir}/${file}") && !file_exists("admin/files/${file}")) {
+					if(!file_exists("{$plantillas}/{$dir}/{$file}") && !file_exists("admin/files/{$file}")) {
 						$param[0]=$fixfile."_file";
 						$file=_dbapp2_replace($param[0],array_merge($row,$params),$row2,"ROW");
 					}
 				}
 				if($print) {
-					$temp="${opdw}/${file}/${name2}";
+					$temp="{$opdw}/{$file}/{$name2}";
 				} else {
 					if($icon) {
 						$icim=($image!="")?$image:_dbapp2_icon($name);
-						$temp2="<img src='${dir}/${icim}' alt=\"${name}\"/>";
+						$temp2="<img src='{$dir}/{$icim}' alt=\"{$name}\"/>";
 					} else {
 						$temp2=$name;
 					}
-					$temp="<a href='${opdw}/${file}/${name2}' id='${id}' class='${class}'>${temp2}</a>";
+					$temp="<a href='{$opdw}/{$file}/{$name2}' id='{$id}' class='{$class}'>{$temp2}</a>";
 				}
 			} else {
 				if(checkDebug("DEBUG_DBAPP2")) $temp=__TAG1__." WARNING: INCLUDE DBAPP2 FILE ".implode(" ",$param).": NOT FOUND ".__TAG2__;
@@ -968,7 +968,7 @@ function _dbapp2_replace($cad1,$row1=array(),$row2=array(),$alias="") {
 				if($alias!="") {
 					foreach($row2 as $key=>$val) {
 						if(!is_array($val)) {
-							$expr1_row2[]="${alias}[${key}]";
+							$expr1_row2[]="{$alias}[{$key}]";
 							$expr2_row2[]=$val;
 						}
 					}
@@ -1159,4 +1159,3 @@ function _dbapp2_convert_date_month_year($date,$lang="es") {
 	$valor=$meses[$month-1]." ".$year;
 	return $valor;
 }
-?>

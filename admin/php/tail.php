@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -24,4 +24,3 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 escribe("<table width='100%'><tr><td><marquee scrollamount=2 scrolldelay=1 width='100%'>".implode("&nbsp;",get_partners())."</marquee></td></tr></table>","","class='header ui-widget-header ui-corner-top' style='height:25px'");
-?>

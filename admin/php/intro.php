@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -91,7 +91,7 @@ if(!check_user()) {
 		global $corners;
 
 		while($j%3!=0) {
-			escribetd("<button disabled=disabled type='button' class='menushome ui-state-default ui-state-disabled ${corners[$j]}' style='width:100%;height:60px'></button>","width='33%' style='padding:1px'");
+			escribetd("<button disabled=disabled type='button' class='menushome ui-state-default ui-state-disabled {$corners[$j]}' style='width:100%;height:60px'></button>","width='33%' style='padding:1px'");
 			$j++;
 			if($j%3==0) closetr();
 		}
@@ -189,7 +189,7 @@ if(!check_user()) {
 				escribe();
 			}
 		}
-		$temp=get_button($title,$action,"100%","60","menushome ui-state-default ${corners[$j]}",$text,array("menushometxt2","menushometxt"));
+		$temp=get_button($title,$action,"100%","60","menushome ui-state-default {$corners[$j]}",$text,array("menushometxt2","menushometxt"));
 		if($j%3==0) opentr();
 		escribetd($temp,"width='33%' style='padding:1px'");
 		if($j%3==2) closetr();
@@ -200,4 +200,3 @@ if(!check_user()) {
 	if($login) putnotes();
 	if($login && check_demo("user")) msgbox(_LANG("intro_demo_message"));
 }
-?>

@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ function get_db_spec($tables="",$orders="") {
 				$coma=($j<$num_fields-1)?",":"";
 				$campo=dbFieldName($result,$j);
 				$spaces=($j<$num_fields-1)?str_repeat(" ",$maxlength[$j]-mb_strlen($campo,"UTF-8")-3):"";
-				$texto.="\"${campo}\"${coma}${spaces}";
+				$texto.="\"{$campo}\"{$coma}{$spaces}";
 			}
 			$texto.="\n";
 			while($row=dbFetchRow($result)) {
@@ -80,7 +80,7 @@ function get_db_spec($tables="",$orders="") {
 					$temp=dbFieldName($result,$j);
 					$campo=$row[$temp];
 					$spaces=($j<$num_fields-1)?str_repeat(" ",$maxlength[$j]-mb_strlen($campo,"UTF-8")-3):"";
-					$texto.="\"${campo}\"${coma}${spaces}";
+					$texto.="\"{$campo}\"{$coma}{$spaces}";
 				}
 				$texto.="\n";
 			}
@@ -339,4 +339,3 @@ if(!function_exists("getParam")) {
 		$func();
 	}
 }
-?>

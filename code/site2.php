@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -592,7 +592,7 @@ function content_include($page) {
 		$module=strtolower(strtok(trim($tag)," "));
 		$params=strtok("");
 		if(!function_exists($module)) {
-			$file="code/${module}.php";
+			$file="code/{$module}.php";
 			if(!file_exists($file)) show_php_error(array("phperror"=>"File not found: $file"));
 			include_once($file);
 		}
@@ -941,7 +941,7 @@ function google_highlight($buffer,$google) {
 		$g=str_replace($ca,$sa,$g);
 		// PREPARAR RESALTADO
 		$color=$paleta[$index];
-		$pre1="<b style=\"background:#${color};color:black;font-weight:bold\">";
+		$pre1="<b style=\"background:#{$color};color:black;font-weight:bold\">";
 		$post1="</b>";
 		// RESALTAR PALABRAS SIN ACENTOS
 		$buffer=google_replace($buffer,$g,$pre1,$post1,$ga,$gb);
@@ -1246,5 +1246,3 @@ function is_disabled_function($fn="") {
 	}
 	return in_array($fn,$disableds_array);
 }
-
-?>

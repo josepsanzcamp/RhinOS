@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -52,24 +52,29 @@ $temp.="<td class='texts2' valign='top' colspan='4'>"._LANG("about_software")."<
 $temp.="</tr><tr><td style='height:10px' colspan='4'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_server_base")."</td>\n";
 $temp.="</tr><tr>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://httpd.apache.org'>Apache 2.2 (Apache-2.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.php.net'>PHP 5 (PHP-3.01)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.mysql.com'>MySQL 5 (GPL-2.0)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://httpd.apache.org'>Apache 2.2/2.4 (ASL-2.0)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.php.net'>PHP 5.6-8.2 (PHP-3.01)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.sqlite.org'>SQLite 3 (Public domain)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.mysql.com'>MySQL 5.1-5.8 (GPL-2.0)</a></td>\n";
+$temp.="</tr><tr>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.mariadb.org'>MariaDB 5.5-10.10 (GPL-2.0)</a></td>\n";
+$temp.="<td class='texts sectioncontentb' nowrap>&nbsp;</td>\n";
+$temp.="<td class='texts sectioncontentb' nowrap>&nbsp;</td>\n";
+$temp.="<td class='texts sectioncontentb' nowrap>&nbsp;</td>\n";
 $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_php_plugins")."</td>\n";
 $temp.="</tr><tr>\n";
-$temp.="<td class='texts item sectioncontent' nowrap><a title='$title' target='_blank' href='http://www.tcpdf.org'>TCPDF 6.2.13 (LGPL-3.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontent' nowrap><a title='$title' target='_blank' href='http://phpthumb.sourceforge.net/'>PHPThumb 1.7.11 (GPL-2.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontent' nowrap><a title='$title' target='_blank' href='http://www.codeplex.com/PHPExcel'>PHPExcel 1.8.1 (LGPL-2.1)</a></td>\n";
-$temp.="<td class='texts item sectioncontent' nowrap><a title='$title' target='_blank' href='http://phpmailer.codeworxtech.com'>PHPMailer 5.2.23 (LGPL-2.1)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://phpthumb.sourceforge.net/'>PHPThumb 1.7.11 (GPL-2.0)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.tcpdf.org'>TCPDF 6.6.2 (LGPL-3.0)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPOffice/PhpSpreadsheet'>PHPSpreadsheet 1.27.0 (LGPL-2.1)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPMailer/PHPMailer'>PHPMailer 6.7.1 (LGPL-2.1)</a></td>\n";
 $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_javascript_base")."</td>\n";
 $temp.="</tr><tr>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.phpjs.org/'>PHPJS 3.26 (MIT & GPL-2.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jquery.com/'>JQuery 3.2.1 (MIT & GPL-2.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jqueryui.com/'>JQuery UI 1.12.1 (MIT & GPL-2.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://ckeditor.com/'>CKEditor 4.6.2 (GPL-2.0, LGPL-2.1 & MPL-1.1)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jquery.com/'>JQuery 3.6.3 (MIT)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jqueryui.com/'>JQuery UI 1.13.2 (MIT)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://ckeditor.com/'>CKEditor 4.20.1 (GPL-2.0, LGPL-2.1 & MPL-1.1)</a></td>\n";
 $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_jquery_plugins")."</td>\n";
 $temp.="</tr><tr>\n";
@@ -105,4 +110,3 @@ $temp.="	fix_max_height();\n";
 //$temp.="});\n";
 $temp.="</script>\n";
 escribe($temp,"texts2");
-?>

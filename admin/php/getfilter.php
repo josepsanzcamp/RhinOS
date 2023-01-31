@@ -7,7 +7,7 @@
 |_| \_\_| |_|_|_| |_|\___/|____/
 
 RhinOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ if(count($temp2)==2) {
 }
 if($type=="") die("&nbsp;"._LANG("getfilter_message_error"));
 // buscar text_ref real
-$query="SELECT * FROM db_selects WHERE tbl='$table' AND row='${temp2[0]}'";
+$query="SELECT * FROM db_selects WHERE tbl='$table' AND row='{$temp2[0]}'";
 $result=dbQuery($query);
 $row=dbFetchRow($result);
 $text_ref=$row["text_ref"];
@@ -132,4 +132,3 @@ header_powered();
 header_expires(false);
 echo $buffer;
 ob_end_flush();
-?>

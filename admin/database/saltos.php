@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ function do_message_error($array,$format) {
 }
 
 function __debug_backtrace_helper(&$item,$key) {
-	$item="${key} => ".$item["function"].(isset($item["class"])?" (in class ".$item["class"].")":"").((isset($item["file"]) && isset($item["line"]))?" (in file ".$item["file"]." at line ".$item["line"].")":"");
+	$item="{$key} => ".$item["function"].(isset($item["class"])?" (in class ".$item["class"].")":"").((isset($item["file"]) && isset($item["line"]))?" (in file ".$item["file"]." at line ".$item["line"].")":"");
 }
 
 function __do_message_error_helper(&$item,$key,$dict) {
@@ -127,7 +127,7 @@ function pretty_html_error($msg) {
 	$html.=".phperror div { width:80%; margin:0 auto; background:#fff; padding:20px 40px; border:1px solid #aaa; border-radius:5px; text-align:left; }";
 	$favicon=getDefault("info/favicon","img/favicon.png");
 	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
-	$html.=".phperror h3 { background:url(${favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
+	$html.=".phperror h3 { background:url({$favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
 	$html.=".phperror pre { white-space:pre-wrap; font-size:10px; }";
 	$html.=".phperror form { display:inline; float:right; }";
 	$html.=".phperror a { color:#00c; }";
@@ -147,9 +147,9 @@ function pretty_html_error($msg) {
 
 function __pretty_html_error_helper($action,$hiddens,$submit) {
 	$html="";
-	$html.="<form action='${action}' method='post'>";
-	foreach($hiddens as $key=>$val) $html.="<input type='hidden' name='${key}' value='${val}'/>";
-	$html.="<input type='submit' value='${submit}'/>";
+	$html.="<form action='{$action}' method='post'>";
+	foreach($hiddens as $key=>$val) $html.="<input type='hidden' name='{$key}' value='{$val}'/>";
+	$html.="<input type='submit' value='{$submit}'/>";
 	$html.="</form>";
 	return $html;
 }
@@ -157,7 +157,7 @@ function __pretty_html_error_helper($action,$hiddens,$submit) {
 function __error_handler($type,$message,$file,$line) {
 	$backtrace=debug_backtrace();
 	array_shift($backtrace);
-	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>$backtrace));
+	show_php_error(array("phperror"=>"{$message} (code {$type})","details"=>"Error on file '{$file}' at line {$line}","backtrace"=>$backtrace));
 }
 
 function __exception_handler($e) {
@@ -173,7 +173,7 @@ function __shutdown_handler() {
 		global $_ERROR_HANDLER;
 		$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
 		$backtrace=debug_backtrace();
-		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}","backtrace"=>$backtrace));
+		show_php_error(array("phperror"=>"{$error["message"]}","details"=>"Error on file '{$error["file"]}' at line {$error["line"]}","backtrace"=>$backtrace));
 	}
 }
 
@@ -472,7 +472,7 @@ function get_name_version_revision($copyright=false) {
 	$path=getcwd();
 	if(file_exists("baseweb/code")) $path="baseweb/code"; // FOR RHINOS REQUESTS
 	if(file_exists("../baseweb/admin")) $path="../baseweb/admin"; // FOR ADMIN REQUESTS
-	return "RhinOS"." v"."3.5"." r".intval(svnversion($path)).($copyright?" "."© 2007-2016 by Josep Sanz Campderrós, http://www.saltos.org":"");
+	return "RhinOS"." v"."3.5"." r".intval(svnversion($path)).($copyright?" "."© 2007-2023 by Josep Sanz Campderrós, http://www.saltos.org":"");
 }
 
 function header_powered() {
@@ -611,4 +611,3 @@ function get_directory($key,$default="") {
 	$bar=(substr($dir,-1,1)!="/")?"/":"";
 	return $dir.$bar;
 }
-?>

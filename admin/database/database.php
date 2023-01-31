@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2016 by Josep Sanz Campderrós
+Copyright (C) 2007-2023 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -90,7 +90,6 @@ function db_num_fields($result) {
 }
 
 function db_field_name($result,$index) {
-	if(!isset($result["header"][$index])) db_error(array("phperror"=>"Unknown field name at position ${index}"));
+	if(!isset($result["header"][$index])) db_error(array("phperror"=>"Unknown field name at position {$index}"));
 	return $result["header"][$index];
 }
-?>
