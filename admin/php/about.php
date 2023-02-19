@@ -66,7 +66,7 @@ $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_
 $temp.="</tr><tr>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://phpthumb.sourceforge.net/'>PHPThumb 1.7.11 (GPL-2.0)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.tcpdf.org'>TCPDF 6.6.2 (LGPL-3.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPOffice/PhpSpreadsheet'>PHPSpreadsheet 1.27.0 (LGPL-2.1)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPOffice/PhpSpreadsheet'>PHPSpreadsheet 1.27.1 (LGPL-2.1)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPMailer/PHPMailer'>PHPMailer 6.7.1 (LGPL-2.1)</a></td>\n";
 $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_javascript_base")."</td>\n";
@@ -74,7 +74,7 @@ $temp.="</tr><tr>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.phpjs.org/'>PHPJS 3.26 (MIT & GPL-2.0)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jquery.com/'>JQuery 3.6.3 (MIT)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jqueryui.com/'>JQuery UI 1.13.2 (MIT)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://ckeditor.com/'>CKEditor 4.20.1 (GPL-2.0, LGPL-2.1 & MPL-1.1)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://ckeditor.com/'>CKEditor 4.20.2 (GPL-2.0, LGPL-2.1 & MPL-1.1)</a></td>\n";
 $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_jquery_plugins")."</td>\n";
 $temp.="</tr><tr>\n";
