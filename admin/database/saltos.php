@@ -125,9 +125,7 @@ function pretty_html_error($msg) {
 	$html.="<style>";
 	$html.=".phperror { background:#eee; color:#000; padding:20px; font-family:Helvetica,Arial,sans-serif; }";
 	$html.=".phperror div { width:80%; margin:0 auto; background:#fff; padding:20px 40px; border:1px solid #aaa; border-radius:5px; text-align:left; }";
-	$favicon=getDefault("info/favicon","img/favicon.png");
-	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
-	$html.=".phperror h3 { background:url({$favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
+	$html.=".phperror h3 { font-size:24px; margin:0; }";
 	$html.=".phperror pre { white-space:pre-wrap; font-size:10px; }";
 	$html.=".phperror form { display:inline; float:right; }";
 	$html.=".phperror a { color:#00c; }";
@@ -136,21 +134,10 @@ function pretty_html_error($msg) {
 	$html.="</head>";
 	$html.="<body class='phperror'>";
 	$html.="<div>";
-	$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
-	$html.=__pretty_html_error_helper("http://bugs.saltos.org",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
 	$html.=$msg;
 	$html.="</div>";
 	$html.="</div>";
 	$html.="</body>";
-	return $html;
-}
-
-function __pretty_html_error_helper($action,$hiddens,$submit) {
-	$html="";
-	$html.="<form action='{$action}' method='post'>";
-	foreach($hiddens as $key=>$val) $html.="<input type='hidden' name='{$key}' value='{$val}'/>";
-	$html.="<input type='submit' value='{$submit}'/>";
-	$html.="</form>";
 	return $html;
 }
 

@@ -180,17 +180,8 @@ if(!isset($_LANG)) {
 if(!isset($_LANG["default"])) {
 	$_LANG["default"]="common";
 }
-if(!isset($_LANG["common"]["notifybug"])) {
-	$_LANG["common"]["notifybug"]="Notify bug";
-}
-
 if(!isset($_CONFIG["info"])) {
 	$_CONFIG["info"]=array();
-}
-if(!isset($_CONFIG["info"]["favicon"])) {
-	$favicon="../admin/img/favicon.png";
-	if(!file_exists($favicon)) $favicon="admin/img/favicon.png";
-	$_CONFIG["info"]["favicon"]=$favicon;
 }
 
 program_error_handler();
