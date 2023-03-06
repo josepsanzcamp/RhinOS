@@ -67,7 +67,7 @@ $temp.="</tr><tr>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://phpthumb.sourceforge.net/'>PHPThumb 1.7.11 (GPL-2.0)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.tcpdf.org'>TCPDF 6.6.2 (LGPL-3.0)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPOffice/PhpSpreadsheet'>PHPSpreadsheet 1.28.0 (LGPL-2.1)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPMailer/PHPMailer'>PHPMailer 6.7.1 (LGPL-2.1)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='https://github.com/PHPMailer/PHPMailer'>PHPMailer 6.8.0 (LGPL-2.1)</a></td>\n";
 $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_javascript_base")."</td>\n";
 $temp.="</tr><tr>\n";
