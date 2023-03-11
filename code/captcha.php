@@ -65,7 +65,7 @@ function captcha($param) {
 		elseif($param[$j]=="AMPLITUDE") $amplitude=_dbapp2_replace($param[++$j]);
 		elseif($param[$j]=="BLUR") $blur=_dbapp2_replace($param[++$j]);
 	}
-	srand((float)microtime(true)*10000000);
+	srand(intval(microtime(true)*1000000));
 	// DEFINE THE CODE AND REAL CAPTCHA
 	if($type=="number") {
 		do {

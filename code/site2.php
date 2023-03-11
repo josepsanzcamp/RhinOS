@@ -435,7 +435,7 @@ function xml2html ($xml, $xsl, $header=false) {
 		$proc->importStylesheet($sheet);
 		$html=$proc->transformToXML($doc);
 	} else {
-		srand((float)microtime(true)*10000000);
+		srand(intval(microtime(true)*1000000));
 		$input=get_temp_directory().md5(uniqid(rand(),true));
 		file_put_contents($input,$xml);
 		@chmod($input,0666);
@@ -1200,7 +1200,7 @@ function print_argv_param($param) {
 }
 
 function print_random($param) {
-	srand((float)microtime(true)*10000000);
+	srand(intval(microtime(true)*1000000));
 	echo_buffer(md5(uniqid(rand(),true)));
 }
 

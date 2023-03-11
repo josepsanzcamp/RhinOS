@@ -1640,7 +1640,7 @@ function getrandomicon($key) {
 		$hash=crc32($key);
 		$index=$hash%$count;
 	} else {
-		srand(intval(microtime(true))*10000000);
+		srand(intval(microtime(true)*1000000));
 		$index=rand(0,$count-1);
 	}
 	$icon=getvalue("def_icons","icon",$index);

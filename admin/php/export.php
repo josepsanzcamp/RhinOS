@@ -37,7 +37,7 @@ if(!function_exists("getParam")) {
 		die();
 	}
 	$format=getParam("format");
-	srand(intval(microtime(true))*10000000);
+	srand(intval(microtime(true)*1000000));
 	$cache=get_temp_directory().md5(uniqid(rand(),true)).".".substr($format,0,3);
 	$title=_LANG("export_label_list_of").getnametable($table);
 	switch($format) {

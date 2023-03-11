@@ -288,7 +288,7 @@ function dbapp2($param,$newrow2=null) {
 					$key=md5($params["QUERY"]);
 					$old=intval(sessions("GET $key"));
 					$rnd=$old;
-					srand((float)microtime(true)*10000000);
+					srand(intval(microtime(true)*1000000));
 					while($rnd==$old) $rnd=rand(0,$params["NUMROWS"]-$params["LIMIT"]);
 					sessions("SET $key $rnd");
 				} else {
