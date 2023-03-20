@@ -752,6 +752,7 @@ function putmultiselect($table,$variable,$form,$default="",$filter="1",$extra=""
 		}
 		$campos="$value_ref valor,$text_ref texto";
 		if($default=="") $default="-1";
+		else $default="'".str_replace(",","','",$default)."'";
 		$filter2=is_array($filter)?$filter["filter"]:$filter;
 		$extra2=is_array($filter)?"AND ((1 {$filter["extra"]}) OR $value_ref IN ($default))":"";
 		$query="SELECT $campos FROM $table_ref WHERE $filter2 $extra2 AND $value_ref!='' AND $text_ref!='' ORDER BY `texto`";

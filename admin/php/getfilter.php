@@ -41,8 +41,8 @@ $temp=explode(".",$variable);
 $query="SELECT * FROM db_selects WHERE tbl='$table' AND row='$temp[0]'";
 $result=dbQuery($query);
 $row=dbFetchRow($result);
-$value_ref=$row["value_ref"];
-$text_ref=$row["text_ref"];
+$value_ref=(is_array($row) && isset($row["value_ref"]))?$row["value_ref"]:"";
+$text_ref=(is_array($row) && isset($row["value_ref"]))?$row["text_ref"]:"";
 dbFree($result);
 // montar el campo real de la tabla
 $temp2=explode(":",$temp[0]);
@@ -77,7 +77,7 @@ if(count($temp2)==2) {
 	$query="SELECT * FROM db_forms WHERE tbl='$table' AND row='".addslashes($temp2[0])."'";
 	$result=dbQuery($query);
 	$row=dbFetchRow($result);
-	$type=$row["type"];
+	$type=(is_array($row) && isset($row["type"]))?$row["type"]:"";
 	dbFree($result);
 }
 if($type=="") die("&nbsp;"._LANG("getfilter_message_error"));

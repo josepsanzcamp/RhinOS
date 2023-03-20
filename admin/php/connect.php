@@ -81,7 +81,7 @@ function checkTable($value) {
 	$query="SELECT * FROM db_tables WHERE tbl='".$value."'";
 	$result=dbQuery($query);
 	$row=dbFetchRow($result);
-	$value=$row["tbl"];
+	$value=(is_array($row) && isset($row["tbl"]))?$row["tbl"]:"";
 	dbFree($result);
 	return $value;
 }
