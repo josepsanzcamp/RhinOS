@@ -197,11 +197,11 @@ function openbody($title="",$body="") {
 	echo "$(document).ready(function() {";
 	echo "  CKEDITOR.config.title='';";
 	echo "  CKEDITOR.config.skin='moono-lisa';";
-	echo "  CKEDITOR.config.extraPlugins='autogrow';";
+	echo "  CKEDITOR.config.extraPlugins='autogrow,codesnippet';";
 	echo "  CKEDITOR.config.removePlugins='elementspath';";
 	echo "  CKEDITOR.config.enterMode=CKEDITOR.ENTER_BR;";
 	echo "  CKEDITOR.config.shiftEnterMode=CKEDITOR.ENTER_BR;";
-	echo "  CKEDITOR.config.toolbar=[['Bold', 'Italic', 'Underline', 'Strike'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink'],['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo'], ['SelectAll', 'RemoveFormat'], ['Maximize', 'Source', 'HorizontalRule', 'Table'],['TextColor', 'BGColor']];";
+	echo "  CKEDITOR.config.toolbar=[['Bold', 'Italic', 'Underline', 'Strike'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink'],['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo'], ['SelectAll', 'RemoveFormat'], ['Maximize', 'Source', 'CodeSnippet', 'HorizontalRule', 'Table'],['TextColor', 'BGColor']];";
 	echo "  CKEDITOR.config.language='"._LANG("lang")."';";
 	echo "  CKEDITOR.config.autoGrow_onStartup=true;";
 	echo "  CKEDITOR.config.autoGrow_minHeight=150;";
