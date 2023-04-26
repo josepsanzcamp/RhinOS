@@ -197,6 +197,9 @@ if(!function_exists("getParam")) {
 	$types=$types_fix;
 	$textos=$textos_fix;
 	// APPLY THE FIX AND CONTINUE
+	$limit="inf";
+	$offset=0;
+	$search="";
 	$query=process_query();
 	$query="SELECT * FROM ($query) fix WHERE {$table}_id IN ($fix)";
 	$result=dbQuery($query);

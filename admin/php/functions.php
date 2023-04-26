@@ -2945,7 +2945,7 @@ function process_query($usepag=1,$onlycount=0) {
 					$query="SELECT $value_ref from $table_ref WHERE $text_ref='$value'";
 					$result=dbQuery($query);
 					$row=dbFetchRow($result);
-					$value=$row[$value_ref];
+					$value=(is_array($row) && isset($row[$value_ref]))?$row[$value_ref]:"";
 					if(!$value && $value_ref=="id") $value="0";
 					dbFree($result);
 				} elseif($type=="boolean") {
