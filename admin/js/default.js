@@ -168,7 +168,7 @@ function make_ckeditors() {
 	var top=$(window).scrollTop();
 	var height=$(window).height();
 	$('textarea[ckeditor=true]:visible').each(function() {
-		var top2=$(this).position().top;
+		var top2=$(this).parent().position().top;
 		var height2=$(this).height();
 		if(top2<=top+height && top2+height2>=top) {
 			__ckeditors_count++;
