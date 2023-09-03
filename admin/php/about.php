@@ -72,7 +72,7 @@ $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
 $temp.="<td class='texts2 sectiontitle' colspan='4' nowrap>&nbsp;"._LANG("about_javascript_base")."</td>\n";
 $temp.="</tr><tr>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.phpjs.org/'>PHPJS 3.26 (MIT & GPL-2.0)</a></td>\n";
-$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jquery.com/'>JQuery 3.7.0 (MIT)</a></td>\n";
+$temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jquery.com/'>JQuery 3.7.1 (MIT)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://www.jqueryui.com/'>JQuery UI 1.13.2 (MIT)</a></td>\n";
 $temp.="<td class='texts item sectioncontentb' nowrap><a title='$title' target='_blank' href='http://ckeditor.com/'>CKEditor 4.22.1 (GPL-2.0, LGPL-2.1 & MPL-1.1)</a></td>\n";
 $temp.="</tr><tr><td style='height:10px'></td></tr><tr>\n";
