@@ -216,6 +216,7 @@ function openbody($title="",$body="") {
 	//~ echo "  CKEDITOR.config.uiColor='transparent';";
 	//~ echo "  CKEDITOR.config.forcePasteAsPlainText=true;";
 	//~ echo "  CKEDITOR.config.allowedContent=true;";
+	echo "  CKEDITOR.config.versionCheck=false;";
 	echo "})";
 	echo "</script>";
 	echo "</head>\n";
