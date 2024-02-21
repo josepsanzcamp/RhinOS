@@ -94,11 +94,11 @@ if(in_array($argv[0],$direct)) {
 	if(!file_exists($plantillas.$carga)) $carga=$argv[0]."/".$argv[1].".htm";
 	if(!file_exists($plantillas.$carga)) $carga=$argv[0]."/".$argv[1].".xml";
 	if(!file_exists($plantillas.$carga)) $carga=$argv[1];
-	if(!file_exists($plantillas.$carga)) $carga=str_replace("|","/",$argv[1]);
+	if(!file_exists($plantillas.$carga)) $carga=str_replace(["|..|","|"],"/",$argv[1]);
 	if(!file_exists($plantillas.$carga)) $carga=$argv[1].".htm";
 	if(!file_exists($plantillas.$carga)) $carga=$argv[1].".xml";
 	if(!file_exists($plantillas.$carga)) $carga="../admin/files/".$argv[1];
-	if(!file_exists($plantillas.$carga)) $carga="../admin/files/".str_replace("|","/",$argv[1]);
+	if(!file_exists($plantillas.$carga)) $carga="../admin/files/".str_replace(["|..|","|"],"/",$argv[1]);
 	if(!file_exists($plantillas.$carga)) not_found();
 	if(in_array($argv[0],array("img","ico")) && isset($argv[2])) {
 		$tmpdir=get_temp_directory();
@@ -155,12 +155,12 @@ if(in_array($argv[0],$direct)) {
 			} elseif(in_array($argv[$i],array("backgroundcolor","background","bgcolor","bg"))) {
 				$i++;
 				if(!isset($argv[$i])) not_found();
-				$color=$argv[$i];
+				$color=preg_replace("/[^0-9a-f]/i","",$argv[$i]);
 				$phpThumb->bg=$color;
 			} elseif(in_array($argv[$i],array("foregroundcolor","foreground","fgcolor","fg"))) {
 				$i++;
 				if(!isset($argv[$i])) not_found();
-				$fg=$argv[$i];
+				$fg=preg_replace("/[^0-9a-f]/i","",$argv[$i]);
 			} elseif(in_array($argv[$i],array("font","fn"))) {
 				$i++;
 				if(!isset($argv[$i])) not_found();
@@ -200,7 +200,7 @@ if(in_array($argv[0],$direct)) {
 			} elseif($argv[$i]=="clr") {
 				$i++;
 				if(!isset($argv[$i])) not_found();
-				$color=$argv[$i];
+				$color=preg_replace("/[^0-9a-f]/i","",$argv[$i]);
 				$phpThumb->fltr[]="clr|50|$color";
 			} else {
 				not_found();
