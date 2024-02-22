@@ -94,11 +94,11 @@ if(in_array($argv[0],$direct)) {
 	if(!file_exists($plantillas.$carga)) $carga=$argv[0]."/".$argv[1].".htm";
 	if(!file_exists($plantillas.$carga)) $carga=$argv[0]."/".$argv[1].".xml";
 	if(!file_exists($plantillas.$carga)) $carga=$argv[1];
-	if(!file_exists($plantillas.$carga)) $carga=str_replace(["|..|","|"],"/",$argv[1]);
+	if(!file_exists($plantillas.$carga)) $carga=str_replace(["..|","|..|","|"],"/",$argv[1]);
 	if(!file_exists($plantillas.$carga)) $carga=$argv[1].".htm";
 	if(!file_exists($plantillas.$carga)) $carga=$argv[1].".xml";
 	if(!file_exists($plantillas.$carga)) $carga="../admin/files/".$argv[1];
-	if(!file_exists($plantillas.$carga)) $carga="../admin/files/".str_replace(["|..|","|"],"/",$argv[1]);
+	if(!file_exists($plantillas.$carga)) $carga="../admin/files/".str_replace(["..|","|..|","|"],"/",$argv[1]);
 	if(!file_exists($plantillas.$carga)) not_found();
 	if(in_array($argv[0],array("img","ico")) && isset($argv[2])) {
 		$tmpdir=get_temp_directory();
