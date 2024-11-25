@@ -98,13 +98,46 @@ function _sessions_gc($maxlifetime) {
 	return true;
 }
 
+class CustomSessionHandler implements SessionHandlerInterface
+{
+	public function open($savePath, $sessionName): bool
+	{
+		return _sessions_open($savePath, $sessionName);
+	}
+
+	public function close(): bool
+	{
+		return _sessions_close();
+	}
+
+	public function read($sessionId): string
+	{
+		return _sessions_read($sessionId);
+	}
+
+	public function write($sessionId, $sessionData): bool
+	{
+		return _sessions_write($sessionId, $sessionData);
+	}
+
+	public function destroy($sessionId): bool
+	{
+		return _sessions_destroy($sessionId);
+	}
+
+	public function gc($maxLifetime): int
+	{
+		return _sessions_gc($maxLifetime);
+	}
+}
+
 function initsession() {
 	ini_set("session.gc_maxlifetime",3600);
 	ini_set("session.gc_probability",1);
 	ini_set("session.gc_divisor",100);
 	ini_set("session.use_trans_sid",0);
 	ini_set("session.use_only_cookie",1);
-	session_set_save_handler ("_sessions_open","_sessions_close","_sessions_read","_sessions_write","_sessions_destroy","_sessions_gc");
+	session_set_save_handler(new CustomSessionHandler(), true);
 	session_save_path("admin");
 	session_start();
 	$globals=array("user","pass","querystring","order","limit","offset","table","search","login");

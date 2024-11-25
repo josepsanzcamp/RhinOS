@@ -862,7 +862,7 @@ function _dbapp2_effects($key,$val,$base64=false) {
 
 function _dbapp2_if_bool($param) {
 	if($param===false) return 0;
-	$param=strtolower(trim($param));
+	$param=strtolower(trim(strval($param)));
 	if($param=="") return 0;
 	if($param=="false") return 0;
 	if($param=="0") return 0;
